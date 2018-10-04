@@ -426,6 +426,21 @@ Regardless of the fact that a centralized application that confirms random numbe
 \vspace{\baselineskip}
 \subsubsection{Dragonereum’s solution}\label{Dragonereums solution}  \par
 
+According to the initial requirements, the RNG has to generate a random number as fast as possible (ideally it should take less than 1 second, however, the processing time is currently limited by Ethereum’s rate of block creation). The best solution in this case is to use data from a blockchain block.\par
+
+Our solution uses a block’s hash to generate random numbers. For complexity and the possibility to serve multiple players at the same time, we mix the previously generated random number, the block.timestamp and the hash of the previous block. So if similar transactions are included in one block, they will get different random numbers even though the hash of the block is the same,\par
+
+\begin{Center}
+\textit{uint256(keccak256(keccak256(block.blockhash(block.number - 1), \_seed), now));}
+\end{Center}\par
+
+where\tab \textit{\_seed}  is the previously generated random number, and\textit{ now} is the block.timestamp.\par
+
+For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers are obtained.\par
+
+\vspace{\baselineskip}
+\subsubsection{Miner attack resistance analysis}\label{Miner attack resistance analysis}  \par
+
 The aforementioned algorithm is subject to miner attacks as the timestamp can be manipulated by a miner and several transactions can be included in the block in order to receive the \textit{\_seed }which matches the desired value.\par
 
 The timestamp submitted by a miner has to comply with the following rules:\par
@@ -463,7 +478,7 @@ Additionally, regular players will be able to win the same amount of Gold (a max
 \end{justify}\par
 
 \begin{justify}
-Also, recent developments evidentiated that miners do not easily tend towards manipulation techniques even when a much higher value is at stake  \cite{SECBIT_2018_Aug_22} . Therefore, we assume that the proposed RNG is sufficient for these use cases.
+Also, recent developments evidentiated that miners do not easily tend towards manipulation techniques even when a much higher value is at stake  \cite{SECBIT_2018_Aug_22}. Therefore, we assume that the proposed RNG is sufficient for these use cases.
 \end{justify}\par
 
 \textbf{High-value transactions}\par
@@ -2307,72 +2322,26 @@ Full scale decentralization is our long term goal and once the game has all the 
 %\addcontentsline{toc}{subsection}{Off-chain solutions (state chains)}
  \label{Off-chain solutions (state chains)} \par
 
-In Section \ref{Technology limitations and their implications for the game design} we discussed the current limitations associated with decentralized technologies and explained the steps taken in building Dragonereum with these limitations in mind. Another possible way of resolving the effects of the transaction costs, the associated delays with transaction processing and network congestion issues on the Ethereum network is with the use of off-chain (state-chain) solutions. In the following we describe a few of the most promising off-chain approaches for resolving the scalability issue.\par
+In Section \ref{Technology limitations and their implications for the game design} we discussed the current limitations associated with decentralized technologies and explained the steps taken in building Dragonereum with these limitations in mind. Another possible way of resolving the effects of the transaction costs, the associated delays with transaction processing and network congestion issues on the Ethereum network is with the use of off-chain (state-chain) solutions. We studied in detail the following most promising off-chain approaches for resolving the scalability issue:\par
 
-The transaction cost in the Ethereum network is quite high, especially in the context of decentralized games with a rich game environment. We expect that our players will breed dragons, attack opponents and participate in battles tens or hundreds of times per day. On average every action will cost a million of gas points. Even with minimal gas price, gaming costs will be sufficient and might scare away some players.\par
+\begin{itemize}
+	\item State channels \par
 
-Additionally, as it was discussed in Section \ref{Technology limitations and their implications for the game design}, another issue with Ethereum is that the transaction processing (confirmation) time is several orders of magnitude higher than players are used to nowadays in multiplayer games. This obstacle significantly decreases the players’ experience in decentralized games and therefore a much more engaging game can be created if this obstacle is removed.\par
+	\item Sharding\par
 
-The third factor we need to consider, when developing a decentralized game, is the network availability. Every decentralized app is technically ``unstoppable''  in virtue of its decentralized nature and it will be working for the user as long as the user has a connection to the Ethereum network. However, in practice dapps don’t have 100\%  availability: network congestion during initial coin offerings, network attacks\footnote{The situation where a malicious entity attacks the Ethereum blockchain by sending a large amount of transactions with a high gas price in order to suppress the transactions of regular users from being mined.}  or the release of some popular dapp can lead to an enormous surge in the gas price. This surge leads to the situation when the transaction’s gas costs more than the value, which the user can receive from the usage of the dapp. Despite the fact that dapps stay technically available (the user can put an extremely high gas price and the transaction will be included in the next block), they become $``$financially unavailable$"$  for most of their users.\par
+	\item Plasma  \cite{Josh_Stark__2018_February_12}\par
 
+	\item TrueBit\par
 
-\vspace{\baselineskip}
- \subsubsection{State channels} \label{State channels} \par
+	\item zk-SNARKS off-chain validation(ZoKrates) \cite{Jacob_Eberhardt_2018} \par
 
-State channels are a technique for performing transactions and other state updates $``$off chain$"$. However, things that happen $``$inside$"$  of a state channel still retain a very high degree of security and finality: if anything goes wrong, there is still the option of referring back to the on-chain dispute. This allows the users to perform transactions with much lower transaction fees and with lower confirmation times.\par
-
-However, state channels are useful only if the participants are going to be exchanging many state updates over a long period of time, and the set of participants must be defined in advance.\par
-
-
-\vspace{\baselineskip}
- \subsubsection{Sharding} \label{Sharding} \par
-
-In the sharding approach, the blockchain is split into different sections called shards, each of which can independently process transactions. Blocks in shards are called collations. Consensus on shards depends on main chain, which is connected with shards by a special contract on the main chain called Validator Manager Contract (VMC). The VMC is responsible for a Proof-of-stake system, collation header validation and cross-shard communication. With this approach, transactions in separate shards can be processed in parallel, and this could significantly increase the scalability of such a system.\par
-
-To the best of our knowledge, currently, there is no public blockchain with an integrated sharding mechanism, which is suitable for usage.\par
-
-\vspace{\baselineskip}
- \subsubsection{Plasma} \label{Plasma} \par
-
-Plasma is a novel technique that could enable Ethereum to reach many more transactions per second than are currently possible  \cite{Josh_Stark__2018_February_12}. Like state channels, Plasma is a technique for conducting off-chain transactions while relying on the underlying Ethereum blockchain to ground its security.\par
-
-But Plasma takes the idea in a new direction, by allowing for the creation of $``$child$"$  blockchains attached to the $``$main$"$  Ethereum blockchain. These child-chains can, in turn, spawn their own child-chains, which can spawn their own child-chains, and so on. The result is that many complex operations can be performed at the child-chain level, running entire applications with many thousands of users, with only minimal interaction with the Ethereum main-chain. A Plasma child-chain can move faster, and charge lower transaction fees, because operations on it do not need to be replicated across the entire Ethereum blockchain. \par
-
-However this concept is under development right now, and there is no open and mature implementations as of the date of writing.\par
+	\item Sidechains \cite{Adam_Back_et_al_2014}
+\end{itemize}\par
 
 
 \vspace{\baselineskip}
- \subsubsection{TrueBit} \label{TrueBit} \par
+After\ carefully investigating the above off-chain solutions, we have concluded that at present they do not offer a viable solution for our game design, as they are not production ready yet. We shall keep the possibility for a future integration open. However, at this stage our game design was built with the current limitations of  Ethereum’s blockchain bandwidth in mind, and there is no real necessity to go off-chain. Furthermore, by staying on-chain we have the advantage of remaining more secure, while the above third-party solutions might have certain vulnerabilities associated with them, especially if they have not been released and tested out yet. Another benefit from not relying on third parties is the fact that our system will not become dependent on solutions that might be suspended or abandoned at any point in time. \par
 
-Truebit is a technology to help Ethereum conduct heavy or complex computations off-chain (\url{https://truebit.io}). This makes it different from state channels and Plasma, which are more useful for increasing the total transaction throughput of the Ethereum blockchain.\par
-
-The TrueBit design allows for compact proofs to be created off-chain to submit to the Ethereum blockchain, which is necessary to Dragonereum for breeding and battle use cases. \par
-
-However, those computations are carried out and verified by Truebit participants for a fee, thus adding additional costs to the process, which makes this solution less attractive for our use-cases. \par
-
-
-\vspace{\baselineskip}
- \subsubsection{zk-SNARKS off-chain validation(ZoKrates)} \label{zk-SNARKS off-chain validation(ZoKrates)} \par
-
-Non-interactive proofs of computation allow for one to have significant benefits in scalable computation  \cite{Jacob_Eberhardt_2018}. With zk-SNARKs/STARKs we can perform the breeding and battle calculation off-chain and submit the result together with the zk-SNARK proof to the Ethereum blockchain.\par
-
-However, the drawback of this approach is the high gas usage, which is higher or similar to our algorithms deployed directly to a smart contract. Also, there is a scalability issue, as only around six such computations can\ be stored in a single block. Additionally, as stated by the  developers: $``$this is a proof-of-concept implementation. It has not been tested for production$"$   \cite{Jacob_Eberhardt_2018}.\par
-
-If the validation gas cost will be reduced in the future, we can take this approach under consideration again.\par
-
-
-\vspace{\baselineskip}
- \subsubsection{Sidechains} \label{Sidechains} \par
-
-The term $``$sidechains$"$  was first described in  \cite{Adam_Back_et_al_2014}. It is a mechanism where by proving that a user had $``$locked$"$  some coins/tokens that were previously in their possession, they were allowed to move some other coins/tokens within a sidechain.\par
-
-A sidechain can be used to offload computations from another chain. Individual sidechains can have different consensus logic from the mainchain, which means they can be optimized for applications that require extremely high speeds or heavy computation, while still relying on the mainchain for issues requiring the highest levels of security.\par
-
-However, sidechains can increase scale but do not imply scalability. Sidechains are no better at providing scalability than increasing the block size. What sidechains bring is the ability to build networks that run on different -- and possibly better-scaling -- technology.\par
-
-The main advantage of sidechains solutions is that it is already working today and can be integrated into Dragonereum’s system.\par
-
-After carefully investigating the available off-chain solutions, we have concluded that at present they do not offer a viable solution for our game design, as they are not production ready yet. We shall keep the possibility for a future integration open. However, at this stage our game design was built with the current limitations of the Ethereum’s blockchain bandwidth in mind, and there is no real necessity to go off-chain. Furthermore, by staying on-chain we have the advantage of remaining more secure, while the above third-party solutions might have certain vulnerabilities associated with them, especially if they have not been released and tested out yet. Another benefit from not relying on third parties is the fact that our system will not become dependent on solutions that might be suspended or abandoned at any point in time. \par
 
 
 
