@@ -101,11 +101,11 @@ url=false,
 
 \title{ \vspace{8cm}
         Dragonereum \\
-		\normalsize Digital scarcity game with blackjack and dragons}
+		\normalsize Digital scarcity game with blockchain and dragons}
 %\date{\today}
 \date{\vspace{10.5cm}
         \today \\	
-		\small Version 0.2.11}
+		\small Version 0.2.12}
 
 
 %%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
@@ -428,13 +428,13 @@ Regardless of the fact that a centralized application that confirms random numbe
 
 According to the initial requirements, the RNG has to generate a random number as fast as possible (ideally it should take less than 1 second, however, the processing time is currently limited by Ethereum’s rate of block creation). The best solution in this case is to use data from a blockchain block.\par
 
-Our solution uses a block’s hash to generate random numbers. For complexity and the possibility to serve multiple players at the same time, we mix the previously generated random number, the block.timestamp and the hash of the previous block. So if similar transactions are included in one block, they will get different random numbers even though the hash of the block is the same,\par
+Our solution uses a block’s hash to generate random numbers. As every transaction rely on different input data (dragon genetics, battle skills and tactics, etc), different dragons will receive different results even if several transactions are included in one block and therefore have same random number,\par
 
 \begin{Center}
-\textit{uint256(keccak256(keccak256(block.blockhash(block.number - 1), \_seed), now));}
+\textit{uint256(keccak256(abi.encodePacked(blockhash(block.number - 1), now)));}
 \end{Center}\par
 
-where\tab \textit{\_seed}  is the previously generated random number, and\textit{ now} is the block.timestamp.\par
+where\tab \textit{ now} is the block.timestamp.\par
 
 For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers are obtained.\par
 
