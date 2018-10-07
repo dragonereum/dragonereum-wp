@@ -199,7 +199,7 @@ The supply of cryptocollectibles is limited by the proposed game design, and, fo
 
 An improved free-to-play model is utilized where developers do not collect any fees from players for game assets and the application is built to serve with minimal ties to any servers.\par
 
-Our long-term goal is to create a fully decentralized game, leveraging all of the unique advantages of the blockchain.\par
+Our long-term goal is to create a fully decentralized game, leveraging all of the unique advantages of the blockchain. More on this in \ref{Serverless application}.\par
 
 In the following we describe how we aim to achieve those goals. In Section \ref{Introduction to Dragonereum} we give an overview of Dragonereum’s game ecosystem. In Section \ref{Game Design Constraints} we\ describe the technological limitations faced by Dragonereum and how they are overcome, we outline how we obtain randomness and present the genetics and diversity of our dragon population.  Section \ref{Game Mechanics} explains in detail the game mechanics, and how the in-game currency is obtained and distributed. The implementation of the game is described in Section \ref{Implementation Details}, and the possible platforms with which Dragonereum can be integrated, in Section \ref{Possible Integrations}. Lastly in Section \ref{Genesis} and Section \ref{GOLD Distribution} the details of the release of the genesis eggs and the Gold allocation are presented correspondingly.\par
 
@@ -348,7 +348,7 @@ These initial limitations set a foundation for a broader game economy: supply of
 
 Additionally, we want to mention that the proposed random number generator (RNG) is in reality a pseudorandom number generator (PRNG) and true randomness is currently unachievable on the blockchain. Therefore, for high value transactions we offer a solution which minimizes the chances of exploiting the game’s algorithms.\par
 
-Lastly, as we rely on Metamask, the current usage is limited to desktop browsers. We will  consider moving to mobile once the web platform is operational.
+Lastly, as we rely on Metamask, the current usage is limited to desktop browsers, however it will be possible to move to mobile once the web platform is operational.
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
@@ -520,7 +520,7 @@ This approach allows any interested party to conduct a battle, therefore withdra
 \vspace{\baselineskip}
 The proposed solutions are not ideal and have a degree of vulnerability, however at the current state of decentralized technology and given the use cases, those solutions offer a balance between the simplicity of implementation/usability and the resistance to an attack.\par
 
-We hope that with the introduction of true randomness in a future development of the Ethereum ecosystem we will be able to switch to more secure algorithms which at the same time will not be more difficult from the player’s point of view.\par
+We hope that with the introduction of true randomness in a future development of the Ethereum ecosystem there will possibility to switch to more secure algorithms which at the same time will not be more difficult from the player’s point of view.\par
 
 \newpage
 \vspace{\baselineskip}\section{Blockchain Genetics}
@@ -551,7 +551,7 @@ In Dragonereum, dragon genetics play a crucial role as they determine every aspe
 
 Also in order to minimize costs, we reduced the complexity of the smart contract to the level where users pay less, but the predictability of breeding is not sacrificed.\par
 
-We hope that with future releases of new solutions and Ethereum protocols, the cost of breeding will be reduced and we will be able to switch to more advanced forms of breeding algorithms.\par
+We hope that with future releases of new solutions and Ethereum protocols, the cost of breeding will be reduced and there will be a possibility to switch to more advanced forms of breeding algorithms.\par
 
 In the following text we will describe the breeding algorithm.\par
 
@@ -2309,7 +2309,7 @@ We think that It would be great to create a full scale game built on top of thos
 
 However, with Dragonereum our aim is more realistic and it is to create a decentralized game built on the Ethereum network which will have minimal ties to our servers at launch and gradually move to decentralized solutions (storage, naming services and indexing) once the game is released.\par
 
-In the long run and with the advancement of technology, we hope to remove any user dependency on us or on any other third party and switch to a fully autonomous and decentralized mode.\par
+In the long run and with the advancement of technology, we hope to remove any user dependency on us or on any other third party and switch to a fully autonomous and decentralized mode. This includes the control under deployed smart contracts which at some point of time should be voluntarily transferred to a new owner. This might be a DAO or just the 0x000..0001 address.\par
 
 The game is currently accessible via browser with a MetaMask plugin installed (\href{https://metamask.io/}{\textcolor[HTML]{1155CC}{\uline{https://metamask.io/}}}).\par
 
@@ -2333,7 +2333,7 @@ However, to make the life of players a bit easier another back-end server is use
 
 While the filtering server stores complete information about every item offered on the game’s marketplaces, the client side application only receives the list of items in a required order. This feature can easily be turned off in the app settings so the app can be used without it.\par
 
-Full scale decentralization is our long term goal and once the game has all the core functionality we will add new solutions and services from a Web 3.0 stack.
+Full scale decentralization is our long term goal and once the game has all the core functionality we hope that new solutions and services from a Web 3.0 stack will be implemented.
 
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
@@ -2347,24 +2347,26 @@ Full scale decentralization is our long term goal and once the game has all the 
 In Section \ref{Game Design Constraints} we discussed the current limitations associated with decentralized technologies and explained the steps taken in building Dragonereum with these limitations in mind. Another possible way of resolving the effects of the transaction costs, the associated delays with transaction processing and network congestion issues on the Ethereum network is with the use of off-chain (state-chain) solutions. We studied in detail the following most promising off-chain approaches for resolving the scalability issue:\par
 
 \begin{itemize}
-	\item State channels \par
+	\item State channels \cite{Joseph_Poon_et_al_2016}\par
 
-	\item Sharding\par
+	\item Sharding \cite{Vitalik_Buterin_2016}\par
 
-	\item Plasma  \cite{Josh_Stark__2018_February_12}\par
+	\item Plasma \cite{Josh_Stark__2018_February_12}\par
 
-	\item TrueBit\par
+	\item TrueBit \cite{Jason_Teutsch_et_al_2017}, \cite{Julia_Koch_et_al_2018}\par
 
-	\item zk-SNARKS off-chain validation(ZoKrates) \cite{Jacob_Eberhardt_2018} \par
+	\item zk-SNARKS off-chain validation(ZoKrates) \cite{Jacob_Eberhardt_2018}\par
 
-	\item Sidechains \cite{Adam_Back_et_al_2014}
+	\item Sidechains \cite{Adam_Back_et_al_2014}\par
+	
+	\item POA network \cite{Stephen_Arsenault_2018}
 \end{itemize}\par
 
 
 \vspace{\baselineskip}
-After\ carefully investigating the above off-chain solutions, we have concluded that at present they do not offer a viable solution for our game design, as they are not production ready yet. We shall keep the possibility for a future integration open. However, at this stage our game design was built with the current limitations of  Ethereum’s blockchain bandwidth in mind, and there is no real necessity to go off-chain. Furthermore, by staying on-chain we have the advantage of remaining more secure, while the above third-party solutions might have certain vulnerabilities associated with them, especially if they have not been released and tested out yet. Another benefit from not relying on third parties is the fact that our system will not become dependent on solutions that might be suspended or abandoned at any point in time. \par
+After\ carefully investigating the above off-chain solutions, we have concluded that at present they do not offer a viable solution for our game design, as many of them are not production ready yet and those in production do not have wide user base. As our game design was built with the current limitations of Ethereum’s blockchain bandwidth in mind, at this stage there is no real necessity to go off-chain. \par
 
-
+Furthermore, by staying on-chain we have the advantage of remaining more secure, while the above third-party solutions might have certain vulnerabilities associated with them, especially if they have not been released and tested out yet. Another benefit from not relying on third parties is the fact that our system will not become dependent on solutions that might be suspended or abandoned at any point in time and, as a result, dragons will be immortal and will live forever. \par
 
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
