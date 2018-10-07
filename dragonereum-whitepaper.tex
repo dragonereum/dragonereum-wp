@@ -201,7 +201,7 @@ An improved free-to-play model is utilized where developers do not collect any f
 
 Our long-term goal is to create a fully decentralized game, leveraging all of the unique advantages of the blockchain.\par
 
-In the following we describe how we aim to achieve those goals. In Section \ref{Introduction to Dragonereum} we give an overview of Dragonereum’s game ecosystem. In Section \ref{Technological Overview} we\ describe the technological limitations faced by Dragonereum and how they are overcome, we outline how we obtain randomness and present the genetics and diversity of our dragon population.  Section \ref{Sustainable Game Ecosystem} explains in detail the game mechanics, and how the in-game currency is obtained and distributed. The implementation of the game is described in Section \ref{Implementation Details}, and the possible platforms with which Dragonereum can be integrated, in Section \ref{Possible Integrations}. Lastly in Section \ref{Genesis} and Section \ref{Token Distribution} the details of the release of the genesis eggs and the Gold allocation are presented correspondingly.\par
+In the following we describe how we aim to achieve those goals. In Section \ref{Introduction to Dragonereum} we give an overview of Dragonereum’s game ecosystem. In Section \ref{Game Design Constraints} we\ describe the technological limitations faced by Dragonereum and how they are overcome, we outline how we obtain randomness and present the genetics and diversity of our dragon population.  Section \ref{Game Mechanics} explains in detail the game mechanics, and how the in-game currency is obtained and distributed. The implementation of the game is described in Section \ref{Implementation Details}, and the possible platforms with which Dragonereum can be integrated, in Section \ref{Possible Integrations}. Lastly in Section \ref{Genesis} and Section \ref{GOLD Distribution} the details of the release of the genesis eggs and the Gold allocation are presented correspondingly.\par
 
 
 \newpage
@@ -329,13 +329,9 @@ Here, we will briefly overview gladiator battles, which are technically the same
 
 
 \newpage
-\vspace{\baselineskip}\section{Technological Overview}
-%\addcontentsline{toc}{section}{Technological Overview}
-\label{Technological Overview}   \par
-
-\subsection{Technology limitations and their implications for the game design}
-%\addcontentsline{toc}{subsection}{Technology limitations and their implications for the game design}
- \label{Technology limitations and their implications for the game design}   \par
+\vspace{\baselineskip}\section{Game Design Constraints}
+%\addcontentsline{toc}{section}{Game Design Constraints}
+\label{Game Design Constraints}   \par
 
 
 As decentralized technologies are in their early period of development, the game was designed with several limitations in mind.\par
@@ -356,10 +352,10 @@ Lastly, as we rely on Metamask, the current usage is limited to desktop browsers
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
-
-\subsection{Obtaining randomness}
-%\addcontentsline{toc}{subsection}{Obtaining randomness}
- \label{Obtaining randomness}  \par
+\newpage
+\vspace{\baselineskip}\section{Obtaining Randomness}
+%\addcontentsline{toc}{section}{Obtaining Randomness}
+\label{Obtaining Randomness}   \par
 
 There are two main approaches used for random number generation. The first relies on some physical phenomenon which is expected to be random. The second relies on a computational algorithm. The latter uses some initial value to generate a random number. However, a generated random number can be reproduced if the initial value (or source of it) and the RNG algorithm is known to the attacker. Hence, this approach, known as pseudorandom, is not truly random.\par
 
@@ -383,48 +379,55 @@ To build a proper decentralized game, where an outcome is defined by a random nu
 
 Below we describe several different approaches to obtaining random numbers for Ethereum dapps available today.\par
 
-
 \vspace{\baselineskip}
-\subsubsection{Data from blockchain blocks}\label{Data from blockchain blocks}  \par
+\subsection{Data from blockchain blocks}
+%\addcontentsline{toc}{subsection}{Data from blockchain blocks}
+\label{Data from blockchain blocks}  \par
 
 It is possible to obtain a random (pseudo-random) number from the block data directly, i.e. based on a block number, a block hash, etc. This approach is fast (the random number is generated in the next mined block) and relatively cheap, but there is a possibility that the miners can influence the output of the block in order to affect a generated number. More on this further down.\par
 
 
-
 \vspace{\baselineskip}
- \subsubsection{Use of oracles}\label{Use of oracles}  \par
+\subsection{Use of oracles}
+%\addcontentsline{toc}{subsection}{Use of oracles}
+\label{Use of oracles}  \par
 
 This approach is based on some trusted external source of randomness, e.g. www.random.org, which is then delivered to the blockchain by other trusted external sources, e.g. http://www.oraclize.it  \cite{Oraclize_2017_May_18}.\par
 
 This implementation is simple, but its weak spot is that oracles could also be compromised  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27}. It also takes longer to obtain a random number as two blockchain transactions are needed. In our tests, it took around 30 seconds to get a random value using this approach.\par
 
-
 \vspace{\baselineskip}
- \subsubsection{Commit-reveal}\label{Commit-reveal}  \par
+\subsection{Commit-reveal}
+%\addcontentsline{toc}{subsection}{Commit-reveal}
+\label{Commit-reveal}  \par
 
 RNG by this method requires two steps. During the first step, participants send hashes of random values and deposit a pledge. During the second step, the sent values are disclosed and a random number is generated based on these initial values  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27}. The pledge is required to ensure the faithfulness of the participants. This method is used by RanDAO, Sleth, and Maker-Darts  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27}.\par
 
 The disadvantages of this method are that a fee is required for most implementations in order to involve participants for random number generation, and that this method is subject to DDOS attacks. The latter results in a loss of pledges by honest participants  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27}.\par
 
 
-
 \vspace{\baselineskip}
- \subsubsection{Future blocks}\label{Future blocks} \par
+\subsection{Future blocks}
+%\addcontentsline{toc}{subsection}{Future blocks}
+\label{Future blocks}  \par
 
 During this RNG, a user sends a transaction that calls the RNG function. The sender's address is added to a list of requests by the RNG smart contract. In the next step, a user requests a random number via another transaction after some blocks have been mined by the network. The required action is taken using a generated random number, based on an initial input and some hashing algorithm, e.g. sha256.\par
 
 This approach is slower than the other solutions (2 blocks will take about 30 seconds) and the current limitations of the EVM (Ethereum Virtual Machine) allow us to look back only 256 blocks. Hence, a user could just skip a generated number if it does not match his/her expectations.\par
 
 \vspace{\baselineskip}
-\subsubsection{Signidice algorithm}\label{Signidice algorithm}  \par
+\subsection{Signidice algorithm}
+%\addcontentsline{toc}{subsection}{Signidice algorithm}
+\label{Signidice algorithm}  \par
 
 This approach of RNG is described in Gluk256 repository  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27},  \cite{Gluk256_2016_Aug_26}. The Ethereum smart contract receives a newly generated public key from the owner and awaits a value from the user. After receipt of this value, the owner hashes it with a private key, thus generating a required random number, which might be confirmed by an already published public key.\par
 
 Regardless of the fact that a centralized application that confirms random numbers is required for this solution, it is still possible to use this method for our use-cases. However, we consider this approach to be too complex for our initial requirements (more on this below).\par
 
-
 \vspace{\baselineskip}
-\subsubsection{Dragonereum’s solution}\label{Dragonereums solution}  \par
+\subsection{Dragonereum’s solution}
+%\addcontentsline{toc}{subsection}{Dragonereum’s solution}
+\label{Dragonereums solution}  \par
 
 According to the initial requirements, the RNG has to generate a random number as fast as possible (ideally it should take less than 1 second, however, the processing time is currently limited by Ethereum’s rate of block creation). The best solution in this case is to use data from a blockchain block.\par
 
@@ -439,7 +442,9 @@ where\tab \textit{ now} is the block.timestamp.\par
 For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers are obtained.\par
 
 \vspace{\baselineskip}
-\subsubsection{Miner attack resistance analysis}\label{Miner attack resistance analysis}  \par
+\subsection{Miner attack resistance analysis}
+%\addcontentsline{toc}{subsection}{Miner attack resistance analysis}
+\label{Miner attack resistance analysis}  \par
 
 The aforementioned algorithm is subject to miner attacks as the timestamp can be manipulated by a miner and several transactions can be included in the block in order to receive the \textit{\_seed }which matches the desired value.\par
 
@@ -496,7 +501,7 @@ In the case of high-value transactions an attacker will have a much greater econ
 \end{justify}\par
 
 \begin{justify}
-With an original algorithm an attacking miner has a very high chance to clone the required genes (in an ideal situation it is 7/16 or 43.75$\%$  for an individual gene and 0.09$\%$  ( $10*(7/16*9/10)^{10}$) for the whole genome, please refer to Section  \ref{Blockchain genetics}). In order to prevent this, we supplemented our RNG algorithm with additional steps in the case of a breeding transaction.
+With an original algorithm an attacking miner has a very high chance to clone the required genes (in an ideal situation it is 7/16 or 43.75$\%$  for an individual gene and 0.09$\%$  ( $10*(7/16*9/10)^{10}$) for the whole genome, please refer to Section  \ref{Blockchain breeding algorithm}). In order to prevent this, we supplemented our RNG algorithm with additional steps in the case of a breeding transaction.
 \end{justify}\par
 
 \begin{justify}
@@ -517,9 +522,14 @@ The proposed solutions are not ideal and have a degree of vulnerability, however
 
 We hope that with the introduction of true randomness in a future development of the Ethereum ecosystem we will be able to switch to more secure algorithms which at the same time will not be more difficult from the player’s point of view.\par
 
-\subsection{Blockchain genetics}
-%\addcontentsline{toc}{subsection}{Blockchain genetics}
-  \label{Blockchain genetics}  \par
+\newpage
+\vspace{\baselineskip}\section{Blockchain Genetics}
+%\addcontentsline{toc}{section}{Blockchain Genetics}
+\label{Blockchain Genetics}   \par
+
+\subsection{Blockchain breeding algorithm}
+%\addcontentsline{toc}{subsection}{Blockchain breeding algorithm}
+  \label{Blockchain breeding algorithm}  \par
 
 A major limitation of current non-blockchain games is the process of new character creation. Current solutions allow the user to choose some characteristics of a character or supply a default character with a preconfigured range of abilities. Additionally, all current solutions are centralized by design, so the player does not control or have the ability to verify the process of game character creation, the number of created characters or their set of skills.\par
 
@@ -755,10 +765,10 @@ Together with inbreeding and Mystery Genes, there will be 97 656 250 000 000 000
 \newpage
 \par
 
-\section{Sustainable Game Ecosystem}
-%\addcontentsline{toc}{section}{Sustainable Game Ecosystem}
- \label{Sustainable Game Ecosystem}  \par
-
+\section{Game Mechanics}
+%\addcontentsline{toc}{section}{Game Mechanics}
+ \label{Game Mechanics}  \par
+ 
 Our aim is to create a cryptocollectible game, whereby those users who spend more time playing the game have the possibility to own higher valued dragons and accumulate higher amounts of Gold.\par
 
 In order to do this the game ecosystem should be balanced and should meet the following criteria:\par
@@ -775,11 +785,9 @@ In this section we address these issues and explain the solutions that are imple
 
 However, before we do this we have to get a deeper understanding of the game mechanics and underlying math. We have explained some game concepts in Section \ref{Introduction to Dragonereum}, and here we will dig into the details and formulas.\par
 
-\subsection{Game mechanics}
-%\addcontentsline{toc}{subsection}{Game mechanics}
- \label{Game mechanics}  \par
-
-\subsubsection{Body parts and basic skills}\label{Body parts and basic skills}   \par
+\subsection{Body parts and basic skills}
+%\addcontentsline{toc}{subsection}{Body parts and basic skills}
+\label{Body parts and basic skills}  \par
 
 As it was discussed, there are five Basic Skills: \textit{attack}, \textit{defense}, \textit{stamina}, \textit{speed}, and \textit{intelligence}. The basic skills are calculated based on the dragon’s genetics and obtained experience (body parts level ups).\par
 
@@ -797,7 +805,7 @@ As it was discussed, there are five Basic Skills: \textit{attack}, \textit{defen
 
 The total skills of a dragon are calculated by summing up all body parts increased by Level Ups. So if you upgrade the wings of a dragon, the total skills of a dragon will also receive a boost.\par
 
-As it was noted in Section \ref{Blockchain genetics} each dragon has ten body parts. Each body part is responsible for three particular basic skills and it does not contribute to the remaining two, see  Table \ref{tab:The table shows which body parts are responsible for which particular skills.}.\par
+As it was noted in Section \ref{Blockchain breeding algorithm} each dragon has ten body parts. Each body part is responsible for three particular basic skills and it does not contribute to the remaining two, see  Table \ref{tab:The table shows which body parts are responsible for which particular skills.}.\par
 
 
 
@@ -906,9 +914,9 @@ As it was noted in Section \ref{Blockchain genetics} each dragon has ten body pa
 %%%%%%%%%%%%%%%%%%%% Table No: 1 ends here %%%%%%%%%%%%%%%%%%%%
 
 
-
-\setlength{\parskip}{9.96pt}
-\subsubsection{Dragon types/families}\label{Dragon types/families}   \par
+\subsection{Dragon types/families}
+%\addcontentsline{toc}{subsection}{Dragon types/families}
+\label{Dragon types/families}  \par
 
 A dragon might have a combination of body parts of different types and varieties depending on the genome of the particular dragon.\par
 
@@ -1001,12 +1009,13 @@ Additionally, every dragon family has a unique advantage over other dragon famil
 Also, each dragon family has a particular \textit{special attack, special defense} and \textit{special peaceful skill}.\par
 
 
-\vspace{\baselineskip}
-\subsubsection{Dragon varieties}\label{Dragon varieties}   \par
+\subsection{Dragon varieties}
+%\addcontentsline{toc}{subsection}{Dragon varieties}
+\label{Dragon varieties}  \par
 
 Each dragon family has genes of different quality. The differences between these varieties influence the dragon’s appearance and strength of skills. Therefore, one water dragon might be stronger than another water dragon even without updates or leveling up.\par
 
-The appearance was already displayed in Figure  \ref{fig:The_different_dragon_types_with_all_of_their_possible_variations_including_inbreading_row_1_regular_rows_28_and_mystery_rows_9_and_10} of Section \ref{Dragon diversity}, and here we discuss the skills of the different varieties.\par
+The appearance was already displayed in Figure  \ref{fig:The_different_dragon_types_with_all_of_their_possible_variations_including_inbreeding_row_1_regular_rows_28_and_mystery_rows_9_and_10} of Section \ref{Dragon diversity}, and here we discuss the skills of the different varieties.\par
 
  Table \ref{tab: The dragon variety factors for each basic skills depending on the dragon gene variation.} below provides the dragon variety factors for the five basic skills depending on the different dragon varieties \par
 
@@ -1154,8 +1163,9 @@ If a player chooses to inbreed close relatives there is a high probability for a
   \end{samepage}
 \end{itemize}\par
 
-\vspace{\baselineskip}
- \subsubsection{Calculating the overall basic skills of a dragon}\label{Calculating the overall basic skills of a dragon}  \par
+\subsection{Calculating the overall basic skills of a dragon}
+%\addcontentsline{toc}{subsection}{Calculating the overall basic skills of a dragon}
+\label{Calculating the overall basic skills of a dragon}  \par
 
 The overall skills of a dragon will be calculated as the sum of skills for all its body parts:
 \begin{center}
@@ -1253,7 +1263,9 @@ The maximum available health and mana points are calculated in Equation \ref{Eq:
 \end{center}
 The current levels of health and mana points available to a dragon might be lower than the maximum calculated in Equation \ref{Eq:Health} and \ref{Eq:Mana}, as a result of a battle, in which the Mana could have been used to activate the \textit{special attack }or \textit{special defense }skills, while the HP could be lost as a result of damage done by an opponent. Mana and HP restore automatically over time.\par
 
- \subsubsection{Dragon Skillfulness Index}\label{Dragon Skillfulness Index} \par
+\subsection{Dragon Skillfulness Index}
+%\addcontentsline{toc}{subsection}{Dragon Skillfulness Index}
+\label{Dragon Skillfulness Index}  \par
 
 In order to represent the dragon skillset in an easier way we offer an aggregative parameter called the Dragon Skillfulness Index. The Dragon Skillfulness Index will be displayed next to the dragon’s name, Figure \ref{fig:The_dragon_display_showing_the_image_of_the_dragon_the_dragons_name_and_the_Dragon_Skillfulness_Indes_on_the_left_of_the_name}.\par
 
@@ -1283,7 +1295,7 @@ The Dragon Skillfulness Index is calculated as follows:\par
 \end{center} \par
 
 \setlength{\parskip}{9.96pt}
-Where,   $I_{ds}$ \  is the Dragon Skillfulness Index, the\ gene points,   $P_g$  are calculated in Equation   \ref{Eq:GPoints}   below, and the index k runs from 1 to 40 for each gene in the dragon’s genome as shown in Section  \ref{Blockchain genetics} . \par
+Where,   $I_{ds}$ \  is the Dragon Skillfulness Index, the\ gene points,   $P_g$  are calculated in Equation   \ref{Eq:GPoints}   below, and the index k runs from 1 to 40 for each gene in the dragon’s genome as shown in Section  \ref{Blockchain breeding algorithm} . \par
 
 
 \begin{center}
@@ -1291,7 +1303,7 @@ Where,   $I_{ds}$ \  is the Dragon Skillfulness Index, the\ gene points,   $P_g$
      P_g=L_g*f_{gv}*f_{dr},
   \end{equation}
 \end{center}
-Where\   $L_g$ \ is the gene level,   $f_{gv}$  is the gene variety factor,\ and  $f_{dr}$   is the dominant or recessive factor, for a dominant gene   $f_{dr}=1$  and for a recessive gene   $f_{dr}=0.7$, described in  Section \ref{Blockchain genetics}. The gene variety factor for each dragon variety is given in  Table \ref{tab:The gene variation multiplier depending on the different dragon variations}.\par
+Where\   $L_g$ \ is the gene level,   $f_{gv}$  is the gene variety factor,\ and  $f_{dr}$   is the dominant or recessive factor, for a dominant gene   $f_{dr}=1$  and for a recessive gene   $f_{dr}=0.7$, described in  Section \ref{Blockchain breeding algorithm}. The gene variety factor for each dragon variety is given in  Table \ref{tab:The gene variation multiplier depending on the different dragon variations}.\par
 
 
 \vspace{\baselineskip}
@@ -1368,12 +1380,13 @@ Where\   $L_g$ \ is the gene level,   $f_{gv}$  is the gene variety factor,\ and
 %%%%%%%%%%%%%%%%%%%% Table No: 5 ends here %%%%%%%%%%%%%%%%%%%%
 
 
-
- \subsubsection{Special attack and special defense skills}\label{Special attack and special defense skills}  \par
+\subsection{Special attack and special defense skills}
+%\addcontentsline{toc}{subsection}{Special attack and special defense skills}
+\label{Special attack and special defense skills}  \par
 
 \textit{Special attack} or \textit{special defense} is the ability to use the special powers available to each dragon family. It improves the \textit{attack} or \textit{defense} during a battle move. Those special skills use Mana. In  Table \ref{tab:Table of Mana costs, multipliers for a attack/defense and a probability of activation for Special Attack and Special Defense.} the amount of Mana necessary for the activation of the \textit{special attack }or the \textit{special defense }skill depending on the type of dragon is shown as well as the probability for its activation.\par
 
-For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the FightSkill structure (see Section \ref{Blockchain genetics}).\par
+For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the FightSkill structure (see Section \ref{Blockchain breeding algorithm}).\par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 starts here %%%%%%%%%%%%%%%%%%%%
@@ -1454,8 +1467,9 @@ For dragons with a mixed genome as a result of the breeding process the type use
 %%%%%%%%%%%%%%%%%%%% Table No: 6 ends here %%%%%%%%%%%%%%%%%%%%
 
 
-
-\subsubsection{Special peaceful skills}\label{Special peaceful skills }\par
+\subsection{Special peaceful skills}
+%\addcontentsline{toc}{subsection}{Special peaceful skills}
+\label{Special peaceful skills}  \par
 
 The maximum Level Up for a dragon is 10. On the 10th Level Up, the player can spend the DP acquired on \textit{special peaceful skills} for their dragon.\par
 
@@ -1868,12 +1882,18 @@ However, R, is subject to the following rules:\par
   \end{samepage}
 \end{itemize}\par
 
-Additionally, due to the early adopter advantage, it will be easier for those players that start participating in the game from its launch to earn Gold as well as to enter the leaderboard.  
+Additionally, due to the early adopter advantage, it will be easier for those players that start participating in the game from its launch to earn Gold by entering the leaderboard.  
 
-\vspace{\baselineskip}
-\subsection{Case studies}
-%\addcontentsline{toc}{subsection}{Case studies}
-The following simulations were conducted, using the initial parameters shown in Table \ref{tab:Initial parameters used in the case studies.}\footnote{We are using values, which were typical for September of 2018.}.
+ %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
+
+\newpage
+\par
+
+\section{Gameplay Simulations}
+%\addcontentsline{toc}{section}{Gameplay Simulations}
+\label{Gameplay Simulations}  \par
+
+The following simulations were conducted, using the initial parameters shown in Table \ref{tab:Initial parameters used in the gameplay simulations.}\footnote{We are using values, which were typical for September of 2018.}.
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 11 starts here %%%%%%%%%%%%%%%%%%%%
@@ -1896,8 +1916,8 @@ The following simulations were conducted, using the initial parameters shown in 
 \multicolumn{1}{|p{2.94in}|}{1000 GOLD} \\
 \hhline{--}
 
-\end{tabular}\caption{Initial parameters used in the case studies.}
-\label{tab:Initial parameters used in the case studies.}
+\end{tabular}\caption{Initial parameters used in the gameplay simulations.}
+\label{tab:Initial parameters used in the gameplay simulations.}
 
  \end{table}
 
@@ -1907,9 +1927,9 @@ The following simulations were conducted, using the initial parameters shown in 
 
 We study in detail three different cases. It should be noted that not all possible game features have been included in the simulations. For instance, a reward can be distributed to the top dragons on the leaderboard, and this was not incorporated as part of the cases studied below.\ De facto, these cases should be considered to be simplified situations,  however they can be used as a very good gauge of the possible real life scenarios.\par
 
-\subsubsection{Case 1: Predominantly breeding (seldom leveling up)}\label{Case 1: Predominantly breeding (seldom leveling up)}
-
-
+\subsection{Case 1: Predominantly breeding}
+%\addcontentsline{toc}{subsection}{Case 1: Predominantly breeding}
+\label{Case 1: Predominantly breeding} \par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 12 starts here %%%%%%%%%%%%%%%%%%%%
@@ -2031,8 +2051,9 @@ The cost of an egg incubation in this case is between \$86 and \$131. This range
 Therefore, economically motivated players will start leveling up dragons in order to get dragons of higher DS and earn more Gold in battles. As such, Case 1 is not in a stable state and will eventually turn into Case 2 portrayed below.\par
 
 
- \subsubsection{Case 2: Breeding and Leveling Up}\label{Case 2: Breeding and Leveling Up}\par
-
+\subsection{Case 2: Breeding and Leveling Up}
+%\addcontentsline{toc}{subsection}{Case 2: Breeding and Leveling Up}
+\label{Case 2: Breeding and Leveling Up} \par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 13 starts here %%%%%%%%%%%%%%%%%%%%
@@ -2149,8 +2170,9 @@ In Figure \ref{fig:CS2The number of dragons (red line) as a function of the numb
 The mining cost for 1 GOLD is between \$0.034 and \$0.25, at 3,000,000 battles, see Table \ref{tab:Same as Table 11, but for Case Study 2} (column 5), and Figure \ref{The cost of Gold in dollars calculated as a mining fee (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} (light blue line). The value of the mining cost will continue to grow with the increasing number of dragons and the \textit{battle winner reward} will be reduced as was described in Section \ref{Early adopter advantage}.  The egg incubation cost in this case is between \$34 and \$250. This variation is due to the fact that each dragon has a corresponding DS, on which the {\it battle winner reward} depends (see Equation \ref{Eq:R}), so the {\it battle winner reward} will depend on which dragons are fighting at a given time, and the possible price of the egg incubation will have a spread depending on all the different possibilities. It should also be noted that in Figure \ref{The cost of Gold in dollars calculated as a mining fee (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).}, the maximum {\it battle winner reward} fluctuates due to the fact that it depends on the DS of the participating dragons. Therefore, if certain dragons with high DS are not participating in battles at some points this will affect the value of the maximum {\it battle winner reward}.\par
 
 
-
-\subsubsection{Case 3: Predominantly Leveling Up (seldom breeding)}\label{Case 3: Predominantly Leveling Up (seldom breeding)}\par
+\subsection{Case 3: Predominantly Leveling Up}
+%\addcontentsline{toc}{subsection}{Case 3: Predominantly Leveling Up}
+\label{Case 3: Predominantly Leveling Up} \par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 14 starts here %%%%%%%%%%%%%%%%%%%%
@@ -2318,11 +2340,11 @@ Full scale decentralization is our long term goal and once the game has all the 
 
 %\newpage
 
-\vspace{\baselineskip}\subsection{Off-chain solutions (state chains)}
-%\addcontentsline{toc}{subsection}{Off-chain solutions (state chains)}
- \label{Off-chain solutions (state chains)} \par
+\vspace{\baselineskip}\subsection{Off-chain solutions}
+%\addcontentsline{toc}{subsection}{Off-chain solutions}
+ \label{Off-chain solutions} \par
 
-In Section \ref{Technology limitations and their implications for the game design} we discussed the current limitations associated with decentralized technologies and explained the steps taken in building Dragonereum with these limitations in mind. Another possible way of resolving the effects of the transaction costs, the associated delays with transaction processing and network congestion issues on the Ethereum network is with the use of off-chain (state-chain) solutions. We studied in detail the following most promising off-chain approaches for resolving the scalability issue:\par
+In Section \ref{Game Design Constraints} we discussed the current limitations associated with decentralized technologies and explained the steps taken in building Dragonereum with these limitations in mind. Another possible way of resolving the effects of the transaction costs, the associated delays with transaction processing and network congestion issues on the Ethereum network is with the use of off-chain (state-chain) solutions. We studied in detail the following most promising off-chain approaches for resolving the scalability issue:\par
 
 \begin{itemize}
 	\item State channels \par
@@ -2497,9 +2519,9 @@ The distribution of body parts during genesis is shown in  Table \ref{tab:The pe
 
 \newpage
 
-\vspace{\baselineskip}\section{Token Distribution}
-%\addcontentsline{toc}{section}{Token distribution}
-\label{Token Distribution} \par
+\vspace{\baselineskip}\section{GOLD Distribution}
+%\addcontentsline{toc}{section}{GOLD distribution}
+\label{GOLD Distribution} \par
 
 There will be 60,000,000 GOLD minted during product deployment and no new coins will be added. Gold will be allocated as shown in Figure \ref{fig:Chart_showing_the_allocation_of_Gold}.\par
 
