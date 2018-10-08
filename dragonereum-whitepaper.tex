@@ -105,7 +105,7 @@ url=false,
 %\date{\today}
 \date{\vspace{10.5cm}
         \today \\	
-		\small Version 0.2.12}
+		\small Version 0.2.13}
 
 
 %%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
@@ -160,16 +160,6 @@ In this document, we propose the philosophical background, technical foundations
 
 \vspace{\baselineskip}
 
-\newpage
-\vspace{\baselineskip}\section*{Disclaimer}
-%\addcontentsline{toc}{section}{Disclaimer}
-This whitepaper is provided for informational purposes only, and does not and will not create any legally binding obligation on the authors or on any third party. Therefore, the representations herein should not be relied upon. Dragonereum makes no representations or warranties (whether express or implied), and disclaims all liability arising from any information stated in the whitepaper. This document shall not be considered as a securities prospectus. \par
-
-No regulatory authority has examined or approved of any of the information set out in this whitepaper. Thus, no action has been or will be taken under the laws, regulatory requirements or rules of any jurisdiction. The publication, distribution or dissemination of this whitepaper does not imply that the applicable laws, regulatory requirements or rules have been complied with.\par
-
-
-\vspace{\baselineskip}
-
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
@@ -186,7 +176,7 @@ However, the current offerings lack many important features of the decentralized
 
 	\item Not properly set supply mechanisms. Unlimited supply reduces the attractiveness of a particular cryptocollectibe.\par
 
-	\item The development teams retain full control over the released product and can add new custom-built assets at any time (though within some articulated limits) or even shut down the entire project (\url{https://www.reddit.com/r/CryptoCelebrities/comments/7u4om1/statement\_from\_developers\_read\_me/}).\par
+	\item The development teams retain full control over the released product and can add new custom-built assets at any time (though within some articulated limits) or even shut down the entire project.\par
 
 	\item The presale monetization model is widely used thus shifting the developing team’s efforts from game development to marketing and PR.\par
 
@@ -290,7 +280,7 @@ Every move during a battle is determined by a weighted random number with the va
   \end{itemize}
 \end{samepage}
 
-Once the faster dragon has made the first move, the opponent has its turn. This continues until the HP for one of the dragons are depleted or the battle exceeds the move limit. If the move limit is exceeded or available gas is depleted but the dragons have an equal amount of HP, the battle result is a draw and both dragons are considered as defeated and no rewards are allocated.\par
+Once the faster dragon has made the first move, the opponent has its turn. This continues until the HP for one of the dragons are depleted or the battle exceeds the move limit. If the move limit is exceeded or available gas is depleted, the dragon with higher percentage of HP compared to initial level of HP wins. If the dragons have an equal amount of HP left, the battle result is a draw and both dragons are considered as defeated and no rewards are allocated.\par
 
 The defeated dragon does not receive any points or bonuses. It only receives a flag protecting it from further attacks, which is valid for one day only.\par
 
@@ -298,7 +288,7 @@ The higher the intelligence level, the greater the chances of a dragon exploitin
 
 \textit{Special attack} or \textit{special defense} is the ability to use the special powers available for each type of dragon. It improves attack or defense during a move. These special moves use Mana.\par
 
-The results of a battle will be displayed in a rich visual animation, which can be replayed and shared with friends. All users will be able to add comments.\par
+The results of a battle will be displayed in a rich visual animation, which can be replayed and shared with friends.\par
 
 A battle winner receives Experience Points (XP). When the required quantity of XP are earned, the dragon gets a level up and receives some DNA Points (DP), which can be used for breeding or converted into body part level ups and thereby improvements of skills. \par
 
@@ -308,18 +298,18 @@ As Gold has limited availability, the reward for battle winners will decrease ov
 
 The only price set by Dragonereum is the amount of Gold required to incubate an egg. This way, Dragonereum controls the number of incubations along with the quantity of new dragons in its overall population.\par
 
-Gold can also be spent on in-game services (e.g. healing of a dragon after a battle) which will be offered by other players or a system. This will create a platform for social interactions between dragon owners.\par
+Gold can also be spent on in-game services which will be offered by other players or a system. This will create a platform for social interactions between dragon owners.\par
 
 Furthermore, as an additional incentive for players to get higher valued dragons and to engage in battles, there will be an internal ranking system, represented by a system of leaderboards, where players can keep track of their achievements and how they score against other dragon owners.\par
 
 As already mentioned the battles described above are training battles. Those battles allow players to earn XP and Gold from the game account.\par
 
-Here, we will briefly overview gladiator battles, which are technically the same battles as training battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn Gold or XP. The simplified process of the gladiator battle can be presented as follows:\par
+Here, we will briefly overview gladiator battles, which are technically the same battles as training battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn XP or Gold from the game account. The simplified process of the gladiator battle can be presented as follows:\par
 
 
 \begin{itemize}
   \begin{samepage}
-    \item A player decides to offer a dragon on the gladiator arena. He/she offers a dragon together with the amount of ETH he/she would like to place on the battle.
+    \item A player decides to offer a dragon on the gladiator arena. He/she offers a dragon together with the amount of ETH or GOLD he/she would like to place on the battle.
     \item Other players can offer their dragons for the battle together with their bets.
     \item The player who initiated the battle confirms one of the offers once the time is up for offers.
     \item Now other players (every player not necessarily those who participate in this fight) can place bets.
@@ -555,7 +545,7 @@ We hope that with future releases of new solutions and Ethereum protocols, the c
 
 In the following text we will describe the breeding algorithm.\par
 
-Two dragons upgraded to a certain level can breed and produce an egg. This egg can be incubated\footnote{The egg is placed in an incubator, once there are five eggs in the incubator, the first egg placed there will hatch, so the addition of the fifth egg in the incubator opens the first egg. The process of hatching continues with the addition of every new egg, out of the eggs inside the incubator, the egg that was in there first hatches everytime a new egg is added.}  and a new dragon with the traits of both parents will be born.\par
+Two dragons upgraded to a certain level can breed and produce an egg. This egg can be incubated\footnote{The egg is placed in the Nest. Once there are three eggs in the Nest, the first egg placed there will hatch, so the addition of the third egg in the incubator opens the first egg. The process of hatching continues with the addition of every new egg, out of the eggs inside the Nest, the egg that was in there first hatches everytime a new egg is added.}  and a new dragon with the traits of both parents will be born.\par
 
 As can be seen from Dragonereum’s egg code (part of a ERC721 token) it stores just the information about parents so the traits of a dragon are determined from this information during the incubation.\par
 
@@ -987,7 +977,7 @@ Each dragon type/family is better at a particular basic skill, as shown in  Tabl
 
 %%%%%%%%%%%%%%%%%%%% Table No: 2 ends here %%%%%%%%%%%%%%%%%%%%
 
-Additionally, every dragon family has a unique advantage over other dragon families, similar to the $``$rock-paper-scissors$"$  game, as shown in Figure \ref{fig:Fire}. For example, water dragons will generally outperform fire dragons as water puts out fire.\par
+Additionally, every dragon type has a unique advantage (in the form of higher damage) over other dragon types, similar to the $``$rock-paper-scissors$"$  game, as shown in Figure \ref{fig:Fire}. For example, water dragons will generally outperform fire dragons as water puts out fire.\par
 
 
 
@@ -1176,7 +1166,7 @@ The overall skills of a dragon will be calculated as the sum of skills for all i
 \end{center}
 where  $Sk(j)$  is one of the five \textit{basic skills}, $bp$  is the body part influence on the particular skill as shown in  Table \ref{tab:The table shows which body parts are responsible for which particular skills.}, a checkmark corresponds to $bp=1$ and a cross corresponds to $bp=0$,   $f_{dt}$  is the dragon type factor shown in  Table \ref{tab:The dragon type factor for each basic skill.},  $f_{dv}$  is the dragon variety factor in  Table \ref{tab: The dragon variety factors for each basic skills depending on the dragon gene variation.} and $L$ is the body part level\footnote{The body part level is the level of the active gene for each body part.}. The index  $j$ denotes the basic skill,  $j \in$ {\textit{attack, defense, stamina, speed, intelligence} , and the summation index $i$  in the superscript, denotes the body part,  $i \in$ {head, eyes, horns, body, wings, arms, legs, tail, spike, pattern}. The following notation for the basic skill will also be used through the text: Sk(attack)$\equiv$A, Sk(defense)$\equiv$D, Sk(stamina)$\equiv$S, Sk(speed)$\equiv$V, Sk(intelligence)$\equiv$I.\par 
 
-This can be illustrated by the following example in  Table \ref{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Legs of a particular dragon.}.  The numbers in the last column will be added to the other body parts and the result will show the dragon’s aptitude for in the different basic skills.
+This can be illustrated by the following example in  Table \ref{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Ashed Legs at level 3 of a particular dragon.}.  The numbers in the last column will be added to the other body parts and the result will show the dragon’s aptitude for in the different basic skills.
 
 %%%%%%%%%%%%%%%%%%%% Table No: 4 starts here %%%%%%%%%%%%%%%%%%%%
 \begin{table}[!ht]
@@ -1192,7 +1182,7 @@ This can be illustrated by the following example in  Table \ref{tab:An example, 
 \multicolumn{1}{p{0.21in}}{} \\
 \hhline{~~~~~~~}
 %row no:2
-\multicolumn{1}{p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Ashen Legs 3 lvl}} & 
+\multicolumn{1}{p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Ashed Legs 3 lvl}} & 
 \multicolumn{1}{p{0.57in}}{} & 
 \multicolumn{1}{p{0.55in}}{{\fontsize{10pt}{12.0pt}\selectfont Leg}} & 
 \multicolumn{1}{p{0.63in}}{{\fontsize{10pt}{12.0pt}\selectfont Fire}} & 
@@ -1246,8 +1236,8 @@ This can be illustrated by the following example in  Table \ref{tab:An example, 
 \multicolumn{1}{p{0.21in}}{{\fontsize{10pt}{12.0pt}\selectfont 0}} \\
 \hhline{~~~~~~~}
 
-\end{tabular}\caption{An example, illustrating the calculation of the basic skill for a specific body part - the Legs of a particular dragon.}
-\label{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Legs of a particular dragon.}
+\end{tabular}\caption{An example, illustrating the calculation of the basic skill for a specific body part - the Ashed Legs at level 3 of a particular dragon.}
+\label{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Ashed Legs at level 3 of a particular dragon.}
 
  \end{table}
 %%%%%%%%%%%%%%%%%%%% Table No: 4 ends here %%%%%%%%%%%%%%%%%%%%
@@ -1267,7 +1257,7 @@ The current levels of health and mana points available to a dragon might be lowe
 %\addcontentsline{toc}{subsection}{Dragon Skillfulness Index}
 \label{Dragon Skillfulness Index}  \par
 
-In order to represent the dragon skillset in an easier way we offer an aggregative parameter called the Dragon Skillfulness Index. The Dragon Skillfulness Index will be displayed next to the dragon’s name, Figure \ref{fig:The_dragon_display_showing_the_image_of_the_dragon_the_dragons_name_and_the_Dragon_Skillfulness_Indes_on_the_left_of_the_name}.\par
+In order to represent the dragon skillset in an easier way we offer an aggregative parameter called the Dragon Skillfulness Index. The Dragon Skillfulness Index will be displayed next to the dragon’s name, Figure \ref{fig:The_dragon_display_showing_the_image_of_the_dragon_the_dragons_name_and_the_Dragon_Skillfulness_Index_on_the_left_of_the_name}.\par
 
 
 
@@ -1275,8 +1265,8 @@ In order to represent the dragon skillset in an easier way we offer an aggregati
 
 \begin{figure}[!ht]
 	\begin{FlushLeft}		\includegraphics[width=6.27in,height=2.49in]{./media/image21.png}
-		\caption{The dragon display, showing the image of the dragon, the dragon's name and the Dragon Skillfulness Indes on the left of the name.}
-		\label{fig:The_dragon_display_showing_the_image_of_the_dragon_the_dragons_name_and_the_Dragon_Skillfulness_Indes_on_the_left_of_the_name}
+		\caption{The dragon display, showing the image of the dragon, the dragon's name and the Dragon Skillfulness Index on the left of the name.}
+		\label{fig:The_dragon_display_showing_the_image_of_the_dragon_the_dragons_name_and_the_Dragon_Skillfulness_Index_on_the_left_of_the_name}
 	\end{FlushLeft}\end{figure}
 
 
@@ -1465,7 +1455,7 @@ For dragons with a mixed genome as a result of the breeding process the type use
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 ends here %%%%%%%%%%%%%%%%%%%%
-
+\textit{Special attack} and \textit{special defense} can be used in both regular and gladiator battles. In the case of gladiator battles a dragon will be freezed once the battle is initiated and no \textit{special attack}, \textit{special defense} or level ups can be applied.\par
 
 \subsection{Special peaceful skills}
 %\addcontentsline{toc}{subsection}{Special peaceful skills}
@@ -1732,7 +1722,7 @@ DP might be spent on:
   \end{itemize}
 \end{samepage}
 
-Body part level ups will increase the total \textit{basic skills} as is shown in  Equation \ref{Eq:Sk},\  since every body part level up gives a boost to the corresponding skills it is responsible for (see Table \ref{tab:The table shows which body parts are responsible for which particular skills.})\footnote{When the body part level up increases the active gene’s level for that body part increases as well, since they are identical, however the levels of the other three genes in the body part set remain the same. From this arises the possibility that a dragon’s offspring will inherit one of these three genes as its active gene and will have lower initial basic skills than its parents.}. The example of how this is calculated is given in  Table \ref{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Legs of a particular dragon.} in Section  \ref{Calculating the overall basic skills of a dragon}.\par
+Body part level ups will increase the total \textit{basic skills} as is shown in  Equation \ref{Eq:Sk},\  since every body part level up gives a boost to the corresponding skills it is responsible for (see Table \ref{tab:The table shows which body parts are responsible for which particular skills.})\footnote{When the body part level up increases the active gene’s level for that body part increases as well, since they are identical, however the levels of the other three genes in the body part set remain the same. From this arises the possibility that a dragon’s offspring will inherit one of these three genes as its active gene and will have lower initial basic skills than its parents.}. The example of how this is calculated is given in  Table \ref{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Ashed Legs at level 3 of a particular dragon.} in Section  \ref{Calculating the overall basic skills of a dragon}.\par
 
 The amount of DP required for a body part level up is calculated as follows:
 \begin{center}
