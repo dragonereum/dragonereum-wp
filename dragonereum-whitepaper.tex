@@ -105,7 +105,7 @@ url=false,
 %\date{\today}
 \date{\vspace{10.5cm}
         \today \\	
-		\small Version 0.2.14}
+		\small Version 0.2.15}
 
 
 %%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
@@ -1276,7 +1276,7 @@ The Dragon Skillfulness Index is calculated as follows:\par
 
 \setlength{\parskip}{0.0pt}
 \begin{center}
-  \begin{equation}
+  \begin{equation} \label{Eq:I_{ds}}
       I_{ds}=\sum_{k=1}^{40} P_g(k),
   \end{equation}
 \end{center} \par
@@ -1844,12 +1844,12 @@ As\ it was discussed in  Section \ref{Introduction to Dragonereum}  the game has
 
 \begin{center}
   \begin{equation}\label{Eq:R}
-    R=\left(\frac{G}{N_d^2}\right)*DS*10*DS_f,
+    R=\left(\frac{G}{N_d^2}\right)*I_{ds}*10*DS_f,
   \end{equation}
 \end{center}
 
 \vspace{\baselineskip}
-\textit{w}here R is the \textit{battle winner reward}, G is the Gold balance in the game account, DS was defined in Equation \ref{Eq:DS} above, and $DS_f$ is the \textit{dragon strength} \textit{factor} defined as,\par
+\textit{w}here R is the \textit{battle winner reward}, G is the Gold balance in the game account, $I_{ds}$ was defined in Equation \ref{Eq:I_{ds}} above, and $DS_f$ is the \textit{dragon strength} \textit{factor} defined as,\par
 
 
 \begin{center}
