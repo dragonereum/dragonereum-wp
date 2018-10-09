@@ -258,7 +258,7 @@ Every dragon has the ability to participate in battles. There will be two types 
 
 Taking into account the fact that battles are held on-chain they are represented not by a conjoined combat of two dragons but rather by an attack of one active dragon on another passive dragon. When a user wants their dragon to engage in a battle, providing their dragon has enough Health Points (HP), the application offers a choice of dragons of similar Dragon Strength (DS) with which it can battle. The DS is described in detail in Section \ref{Leveling up dragons and dragon population growth}. Once a user chooses an opponent, the transaction with the battle is sent to the blockchain. As soon as the transaction is mined and included into the block, a user can see an animated battle together with the battle results\footnote{The defending dragon’s owner will similarly have the opportunity to see the animated battle once they go online}.\par
 
-The attacking dragon always has an advantage as it can adjust its battle tactics according to its opponent’s skills. Defending dragons use the default battle tactics defined previously by the owner.All battle results are dependent on the overall skills of the battling dragons, as well as the battle tactics used during the battle.The battle tactics can be defined by two sliders:
+The attacking dragon always has an advantage as it can adjust its battle tactics according to its opponent’s skills. Defending dragons use the default battle tactics defined previously by the owner. All battle results are dependent on the overall skills of the battling dragons, as well as the battle tactics used during the battle. The battle tactics can be defined by two sliders:
 
 
 \begin{itemize}
@@ -412,7 +412,7 @@ This approach is slower than the other solutions (2 blocks will take about 30 se
 
 This approach of RNG is described in Gluk256 repository  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27},  \cite{Gluk256_2016_Aug_26}. The Ethereum smart contract receives a newly generated public key from the owner and awaits a value from the user. After receipt of this value, the owner hashes it with a private key, thus generating a required random number, which might be confirmed by an already published public key.\par
 
-Regardless of the fact that a centralized application that confirms random numbers is required for this solution, it is still possible to use this method for our use-cases. However, we consider this approach to be too complex for our initial requirements (more on this below).\par
+Regardless of the fact that a penalty for parties which does not reveal their signatures should be implemented, it is still possible to use this method for our use-cases. However, we consider this approach to be too complex for our initial requirements (more on this below).\par
 
 \vspace{\baselineskip}
 \subsection{Dragonereum’s solution}
