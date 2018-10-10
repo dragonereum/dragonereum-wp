@@ -105,7 +105,7 @@ url=false,
 %\date{\today}
 \date{\vspace{10.5cm}
         \today \\	
-		\small Version 0.2.15}
+		\small Version 0.2.16}
 
 
 %%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
@@ -565,64 +565,71 @@ A hatched dragon on the other hand has much more information stored inside its E
 
 \begin{footnotesize}
 \begin{verbatim}
+// health and mana are multiplied by 100
 struct HealthAndMana {
-       uint256 timestamp; // last HP or mana update
+       uint256 timestamp; // timestamp of last HP or mana update
        uint32 remainingHealth; // remaining from last update
-       uint32 remainingMana;
+       uint32 remainingMana; // remaining from last update
        uint32 maxHealth;
        uint32 maxMana;
-   }
-   struct Level {
-       uint8 level;
-       uint8 experience;
-       uint16 points; // upgrade points
-   }
-   struct Tactics {
-       uint8 melee; // melee/range in percentage
-       uint8 attack; // attack/defence in percentage   
-   }
-   struct Fights {
+}
+struct Level {
+       uint8 level; // current level of dragon
+       uint8 experience; // XP current level
+       uint16 points; // DNA points
+}
+struct Tactics {
+       uint8 melee; // ranged/melee tactics in percentages
+       uint8 attack; // defence/attack tactics in percentages
+}
+struct Fights {
        uint16 wins;
        uint16 defeats;
-   }
-   struct Skills {
+}
+// multilpied by 100
+struct Skills {
        uint32 attack;
        uint32 defence;
        uint32 stamina;
        uint32 speed;
        uint32 intellect;
-   }
-   struct FightSkill {
-       uint8 type; // attack/defence       
-       uint32 cost; // cost in mana
-       uint8 factor;
-       uint8 chance; // chance of operation
-   }
-   
-// classes:   (= types, but it's a reserved word in solidity)
-   // 0 - no skill
-   // 1 - attack multiplier
-   // 2 - defence multiplier
-   // 3 - healing
-
-   struct PeacefulSkill {
-       uint8 class;
-       uint32 cost; // in mana
-       uint32 effect; // heal effect or attack/defence buff factor   }
-// types:  // 0 - water
-   // 1 - fire
-   // 2 - air
-   // 3 - earth
-   // 4 - magic
-   struct Dragon {
-       string name;
+}
+// types:
+// 0 - water, 1 - fire, 2 - air, 3 - earth, 4 - magic
+struct Dragon {
        uint16 generation;
-       uint32 coolness;
        uint256[4] genome;
        uint256[2] parents;
-       uint8[11] type; // array of existing types in dragon
-       uint256 birth;
-   }
+       uint8[11] race; // array of weights of dragon's types
+       uint256 birth; // timestamp
+}
+Dragon[] public dragons;
+// dragon id -> value
+mapping (uint256 => bytes32) public names;
+mapping (uint256 => HealthAndMana) public healthAndMana;
+mapping (uint256 => Tactics) public tactics;
+mapping (uint256 => Fights) public fights;
+mapping (uint256 => Skills) public skills;
+mapping (uint256 => Level) public levels;
+mapping (uint256 => uint32) public DSI; // Dragon Skillfulness Index multiplied by 100
+// id -> type of skill (dragon type)
+mapping (uint256 => uint8) public specialAttacks;
+mapping (uint256 => uint8) public specialDefences;
+// classes:
+// 0 - no skill
+// 1 - attack multiplier
+// 2 - defence multiplier
+// 3 - stamina multiplier
+// 4 - speed multiplier
+// 5 - intellect multiplier
+// 6 - healing
+// 7 - mana regeneration
+// id -> class
+mapping (uint256 => uint8) public peacefulSkills;
+// classes:
+// 1 - attack, 2 - defence, 3 - stamina, 4 - speed, 5 - intellect
+// id -> class -> effect
+mapping (uint256 => mapping (uint8 => uint32)) public buffs;
 
 \end{verbatim}
 \end{footnotesize}
@@ -729,7 +736,7 @@ This approach allows us to create a truly trusted world of cryptocollectible dra
 \begin{figure}[!ht]
 	\begin{Center}
 		\includegraphics[width=4.85in,height=8.48in]{./media/image14.jpg}
-		\caption{The different dragon types, with all of their possible variations, including inbreeding -row 1, regular rows 2-8, and mystery rows 9, and 10.}
+		\caption{The different dragon types, with all of their possible variations, including inbreeding - row 1, regular rows 2-8, and mystery rows 9, and 10.}
 		\label{fig:The_different_dragon_types_with_all_of_their_possible_variations_including_inbreeding_row_1_regular_rows_28_and_mystery_rows_9_and_10}
 	\end{Center}
 \end{figure}
@@ -819,7 +826,7 @@ As it was noted in Section \ref{Blockchain breeding algorithm} each dragon has t
 \multicolumn{1}{|p{0.84in}|}{{\fontsize{10pt}{12.0pt}\selectfont Head}} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\( \checkmark \)}} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont  $\times$  }} & 
-\multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont  $\times$  }} & 
+\multicolumn{1}{p{0.84in}|}{\Centering {\( \checkmark \)}} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont  $\times$  }} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\( \checkmark \)}} \\
 \hhline{------}
@@ -1431,7 +1438,7 @@ For dragons with a mixed genome as a result of the breeding process the type use
 \multicolumn{1}{p{0.78in}|}{\centering{{\fontsize{10pt}{12.0pt}\selectfont   $3 \times I $ }}} \\
 \hhline{------}
 %row no:8
-\multicolumn{1}{|p{1.48in}|}{{\fontsize{10pt}{12.0pt}\selectfont Attack factor}} & 
+\multicolumn{1}{|p{1.48in}|}{{\fontsize{10pt}{12.0pt}\selectfont Defense factor}} & 
 \multicolumn{1}{p{0.78in}|}{\centering{{\fontsize{10pt}{12.0pt}\selectfont   $\sqrt{A/3}+1$ }}} & 
 \multicolumn{1}{p{0.78in}|}{\centering{{\fontsize{10pt}{12.0pt}\selectfont   $\sqrt{S/3}+1$ }}} & 
 \multicolumn{1}{p{0.78in}|}{\centering{{\fontsize{10pt}{12.0pt}\selectfont   $\sqrt{D/3}+1$ }}} & 
@@ -1454,13 +1461,13 @@ For dragons with a mixed genome as a result of the breeding process the type use
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 ends here %%%%%%%%%%%%%%%%%%%%
-\textit{Special attack} and \textit{special defense} can be used in both regular and gladiator battles. In the case of gladiator battles a dragon will be freezed once the battle is initiated and no \textit{special attack}, \textit{special defense} or level ups can be applied.\par
+
 
 \subsection{Special peaceful skills}
 %\addcontentsline{toc}{subsection}{Special peaceful skills}
 \label{Special peaceful skills}  \par
 
-The maximum Level Up for a dragon is 10. On the 10th Level Up, the player can spend the DP acquired on \textit{special peaceful skills} for their dragon.\par
+The maximum Level Up for a dragon is 10. On the 10th Level Up, the player can obtain a \textit{special peaceful skills} for their dragon.\par
 
 A \textit{special peaceful skill} allows users to earn in-game currency in exchange for offering skills to the game community on the game’s marketplace\footnote{The price of the {\it special peaceful skills}, alongside the prices of other items, such as dragons and eggs, traded on the marketplace will be decided by the market forces. The role of Dragonereum will only be to provide the internal marketplace to facilitate trade, however players will be able to interact directly with smart contracts and third-party marketplaces can be introduced.}.\par
 
@@ -1525,7 +1532,7 @@ The dragon offering the \textit{special peaceful skill} will have to use its Man
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 7 ends here %%%%%%%%%%%%%%%%%%%%
-
+\textit{Special peaceful skills} can be used in both regular and gladiator battles. In the case of gladiator battles a dragon will be freezed once the battle is initiated and no \textit{special  peaceful skill} or body part level ups can be applied.\par
 
 \setlength{\parskip}{9.96pt}
 \subsection{Leveling up dragons and dragon population growth}
@@ -1568,14 +1575,25 @@ As a result of these training battles the winners will receive XP. The number of
 \begin{center}
   \begin{equation}
     XP_e= \begin{cases}
-    10*\left(\frac{DS_{d}}{DS_{w}}\right)^5 & \mbox{if } DS_{d} < DS_{w}\\
-    \left(\frac{DS_{d}}{DS_{w}}\right)^2 & \mbox{if } DS_{d} > DS_{w},
+    \left(\frac{DS_{d}}{DS_{w}}\right)^5 & \mbox{if } DS_{d} < DS_{w}\\
+    \left(\frac{DS_{d}}{DS_{w}}\right)^2 & \mbox{if } DS_{d} \geq DS_{w},
     \end{cases}
   \end{equation}
 \end{center}
 
 \vspace{\baselineskip}
-where $XP_e$ are the Experience Points earned after a battle, $DS_{d}$\ \  is the DS of the defeated dragon, and $DS_{w}$ is the DS of the winning dragon. The factor of 10 in the case when  $DS_d<DS_w$ is necessary in order to keep $XP_e$\ larger than one and in the same range as the points earned when   $DS_d>DS_w$. In the case when the attacking dragon loses, and the defending dragon wins, it will receive\  $XP_e/2$ . The reduction in the number of XP won is done in order to incentivize the attacking dragons, which use gas to initiate the transaction on Ethereum.\par
+where $XP_e$ are the Experience Points earned after a battle, $DS_{d}$\ \  is the DS of the defeated dragon, and $DS_{w}$ is the DS of the winning dragon. In the case when the attacking dragon loses, and the defending dragon wins, it will receive\  $XP_e/2$ and XP won is calculated according to the formulas below.\par 
+
+\begin{center}
+	\begin{equation}
+	XP_e= \begin{cases}
+	\left(\frac{DS_{d}}{DS_{w}}\right)^5 & \mbox{if } DS_{d} < DS_{w}\\
+	\left(\frac{DS_{d}}{DS_{w}}\right) & \mbox{if } DS_{d} \geq DS_{w},
+	\end{cases}
+	\end{equation}
+\end{center}
+
+The reduction in the number of XP won is done in order to incentivize the attacking dragons, which use gas to initiate the transaction on Ethereum.\par
 
 Once the required amount of XP is accumulated the dragon will get a dragon level up. There are ten Dragon Level Ups possible for each dragon. Each next dragon level up requires more XP and therefore more battles to be won, see  Table \ref{tab:The amount of XP required for a level up at each level (0-10).}.\par
 
@@ -1719,8 +1737,6 @@ DP might be spent on:
 	\item body parts level up\par
 
 	\item breeding\par
-
-	\item the acquisition of a {\it peaceful skill} (only after leveling up to the 10th dragon level).
   \end{itemize}
 \end{samepage}
 
@@ -1768,7 +1784,7 @@ Here we will look at the amount of DNA Points required for breeding at each leve
 \hhline{--}
 %row no:2
 \multicolumn{1}{|p{0.84in}|}{\raggedleft {\fontsize{10pt}{12.0pt}\selectfont 0}} & 
-\multicolumn{1}{p{2.58in}|}{\raggedleft {\fontsize{10pt}{12.0pt}\selectfont 0}} \\
+\multicolumn{1}{p{2.58in}|}{\raggedleft {\fontsize{10pt}{12.0pt}\selectfont -}} \\
 \hhline{--}
 %row no:3
 \multicolumn{1}{|p{0.84in}|}{\raggedleft {\fontsize{10pt}{12.0pt}\selectfont 1}} & 
@@ -2543,7 +2559,7 @@ Once the smart contract is deployed, appointed team members will receive a total
 
 \textbf{Nonsense Games}\par
 
-Another 5$\%$ will be reserved for gaming studio Nonsense Games and can be used at its own discretion (shown in yellow in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}). The multisig address of Nonsense Games is 0x2a52fba0c290d30214cb7876ede81c2b407e8782.\par
+Another 5$\%$ will be reserved for gaming studio Nonsense Games and can be used for further studio development (shown in yellow in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}). The multisig address of Nonsense Games is 0x2a52fba0c290d30214cb7876ede81c2b407e8782.\par
 
 \textbf{Foundation}\par
 
