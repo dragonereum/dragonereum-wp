@@ -105,7 +105,7 @@ url=false,
 %\date{\today}
 \date{\vspace{10.5cm}
         \today \\	
-		\small Version 1.0.0}
+		\small Version 1.0.1}
 
 
 %%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
@@ -1582,13 +1582,13 @@ As a result of these training battles the winners will receive XP. The number of
 \end{center}
 
 \vspace{\baselineskip}
-where $XP_e$ are the Experience Points earned after a battle, $DS_{d}$\ \  is the DS of the defeated dragon, and $DS_{w}$ is the DS of the winning dragon. In the case when the attacking dragon loses, and the defending dragon wins, it will receive\  $XP_e/2$ and XP won is calculated according to the formulas below.\par 
+where $XP_e$ are the Experience Points earned after a battle, $DS_{d}$\ \  is the DS of the defeated dragon, and $DS_{w}$ is the DS of the winning dragon. In the case when the attacking dragon loses, and the defending dragon wins, XP won is calculated according to the formulas below, however it is limited by the algorithm to be not more than 10.\par 
 
 \begin{center}
 	\begin{equation}
 	XP_e= \begin{cases}
-	\left(\frac{DS_{d}}{DS_{w}}\right)^5 & \mbox{if } DS_{d} < DS_{w}\\
-	\left(\frac{DS_{d}}{DS_{w}}\right) & \mbox{if } DS_{d} \geq DS_{w},
+	\left(\frac{DS_{d}}{DS_{w}}\right)^5/2 & \mbox{if } DS_{d} < DS_{w}\\
+	\left(\frac{DS_{d}}{DS_{w}}\right)/2 & \mbox{if } DS_{d} \geq DS_{w},
 	\end{cases}
 	\end{equation}
 \end{center}
