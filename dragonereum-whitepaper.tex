@@ -105,7 +105,7 @@ url=false,
 %\date{\today}
 \date{\vspace{10.5cm}
         \today \\	
-		\small Version 1.0.1}
+		\small Version 1.0.2}
 
 
 %%%%%%%%%%%%%%%%%%%% Document code starts here %%%%%%%%%%%%%%%%%%%%
@@ -1381,7 +1381,7 @@ Where\   $L_g$ \ is the gene level,   $f_{gv}$  is the gene variety factor,\ and
 
 \textit{Special attack} or \textit{special defense} is the ability to use the special powers available to each dragon family. It improves the \textit{attack} or \textit{defense} during a battle move. Those special skills use Mana. In  Table \ref{tab:Table of Mana costs, multipliers for a attack/defense and a probability of activation for Special Attack and Special Defense.} the amount of Mana necessary for the activation of the \textit{special attack }or the \textit{special defense }skill depending on the type of dragon is shown as well as the probability for its activation.\par
 
-For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the FightSkill structure (see Section \ref{Blockchain breeding algorithm}).\par
+For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the specialAttacks/specialDefences mappings (see Section \ref{Blockchain breeding algorithm}).\par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 starts here %%%%%%%%%%%%%%%%%%%%
@@ -1507,7 +1507,7 @@ The dragon offering the \textit{special peaceful skill} will have to use its Man
 %row no:5
 \multicolumn{1}{|p{1.49in}|}{{\fontsize{10pt}{12.0pt}\selectfont Speed boost}} & 
 \multicolumn{1}{p{1.92in}|}{$f_V=\sqrt{V/30}+1$} & 
-\multicolumn{1}{p{2.62in}|}{ $3\times S${\fontsize{10pt}{12.0pt}\selectfont  }} \\
+\multicolumn{1}{p{2.62in}|}{ $3\times V${\fontsize{10pt}{12.0pt}\selectfont  }} \\
 \hhline{---}
 %row no:6
 \multicolumn{1}{|p{1.49in}|}{{\fontsize{10pt}{12.0pt}\selectfont Intelligence boost}} & 
