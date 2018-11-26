@@ -205,7 +205,7 @@ With our initial version of the decentralized application (dapp), a user will ha
 
 Each dragon is owned and controlled by a particular address on the Ethereum network. Dragons are securely stored on the blockchain and cannot be modified, replicated or destroyed by any third party.\par
 
-Every dragon has its unique, immutable set of genes which determines all features and traits of the dragon.\par
+Every dragon has its unique set of genes which determines all features and traits of the dragon.\par
 
 Therefore, a player will have to choose a type of dragon to control (Figure \ref{fig:A_selection_of_different_types_of_dragons__Each_row_represents_two_varieties_of_the_fire_ice_earth_air_and_cyber_type_}), decide on a battle strategy, determine which skills to train with experience earned in battles and how to get better offsprings with further improved \textit{basic skills} (\textit{attack, defense, stamina, speed, }and\textit{ intelligence}). \par
 
@@ -280,7 +280,7 @@ Every move during a battle is determined by a weighted random number with the va
   \end{itemize}
 \end{samepage}
 
-Once the faster dragon has made the first move, the opponent has its turn. This continues until the HP for one of the dragons are depleted or the battle exceeds the move limit. If the move limit is exceeded or available gas is depleted, the dragon with higher percentage of HP compared to initial level of HP wins. If the dragons have an equal amount of HP left, the battle result is a draw and both dragons are considered as defeated and no rewards are allocated.\par
+Once the faster dragon has made the first move, the opponent has its turn. This continues until the HP for one of the dragons are depleted or the battle exceeds the move limit. If the move limit is exceeded or available gas is depleted, the dragon with higher percentage of HP compared to initial level of HP wins. If the dragons have an equal amount of HP left, the dragon which made the first move will be a winner.\par
 
 The defeated dragon does not receive any points or bonuses. It only receives a flag protecting it from further attacks, which is valid for one day only.\par
 
@@ -292,9 +292,9 @@ The results of a battle will be displayed in a rich visual animation, which can 
 
 A battle winner receives Experience Points (XP). When the required quantity of XP are earned, the dragon gets a level up and receives some DNA Points (DP), which can be used for breeding or converted into body part level ups and thereby improvements of skills. \par
 
-Additionally, if the attacking dragon wins, it is credited with Gold as a bonus. Gold is an in-game cryptocurrency which will be distributed to winners from the game’s balance, and the ticker symbol for it is denoted by GOLD. The game’s creators will not have any control over Gold stored in the Dragonereum's Treasury (which is one of the game’s smart contracts) once it has been deployed to the blockchain. \par
+Additionally, if the attacking dragon wins, it is credited with Gold as a bonus. Gold is an in-game cryptocurrency which will be distributed to winners from the game’s balance, and the ticker symbol for it is denoted by GOLD. The game’s creators will not have any control over Gold stored in the Dragonereum’ Treasury (which is one of the game’s smart contracts) once the control over the upgradability and halting mechanism will be transferred to the 0x00..000001 address (more details can be found in Section \ref{Gradual decentralization}).\par
 
-As Gold has limited availability, the reward for battle winners will decrease over time. The value of the reward will be aligned with the number of dragons in the population and the number of battles held. Once the initial balance in the game's Treasury becomes depleted, the reward adjusts itself according to the sum of fees collected. These are collected for egg incubation and additional in-game features. Consequently, the first players will have an advantage with regards to Gold accumulation.\par
+As Gold has limited availability, the reward for battle winners will decrease over time. The value of the reward will be aligned with the number of dragons in the population, Dragon Skillfulness Index (described in Section \ref{Dragon Skillfulness Index}) and the amount of Gold in the Treasury. Once the initial balance in the game's Treasury becomes depleted, the reward adjusts itself according to the sum of fees collected. These are collected for egg incubation and additional in-game features. Consequently, the first players will have an advantage with regards to Gold accumulation.\par
 
 The only price set by Dragonereum is the amount of Gold required to incubate an egg. This way, Dragonereum controls the number of incubations along with the quantity of new dragons in its overall population.\par
 
@@ -309,10 +309,10 @@ Here, we will briefly overview gladiator battles, which are technically the same
 
 \begin{itemize}
   \begin{samepage}
-    \item A player decides to offer a dragon on the gladiator arena. He/she offers a dragon together with the amount of ETH or GOLD he/she would like to place on the battle.
+    \item A player decides to offer a dragon on the gladiator battle. He/she offers a dragon together with the amount of ETH or GOLD he/she would like to place on the battle.
     \item Other players can offer their dragons for the battle together with their bets.
     \item The player who initiated the battle confirms one of the offers once the time is up for offers.
-    \item Now other players (every player not necessarily those who participate in this fight) can place bets.
+    \item Once opponents are set, other players (not necessarily those who participate in this battle) will be able to place bets.
     \item Once the timer set during the battle initiation has expired, any player can finalize the battle.
   \end{samepage}
 \end{itemize}
@@ -427,9 +427,11 @@ Our solution uses a block’s hash to generate random numbers. As every transact
 \textit{uint256(keccak256(abi.encodePacked(blockhash(block.number - 1), now)));}
 \end{Center}\par
 
-where\tab \textit{ now} is the block.timestamp.\par
+where \textit{ now} is the block.timestamp.\par
 
 For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers are obtained.\par
+
+However, this approach is easily exploitable by smart contract. We this function can be called only by user controlled account.\par
 
 \vspace{\baselineskip}
 \subsection{Miner attack resistance analysis}
@@ -580,19 +582,19 @@ struct Level {
 }
 struct Tactics {
        uint8 melee; // ranged/melee tactics in percentages
-       uint8 attack; // defence/attack tactics in percentages
+       uint8 attack; // defense/attack tactics in percentages
 }
-struct Fights {
+struct Battles {
        uint16 wins;
        uint16 defeats;
 }
 // multilpied by 100
 struct Skills {
        uint32 attack;
-       uint32 defence;
+       uint32 defense;
        uint32 stamina;
        uint32 speed;
-       uint32 intellect;
+       uint32 intelligence;
 }
 // types:
 // 0 - water, 1 - fire, 2 - air, 3 - earth, 4 - cyber
@@ -600,7 +602,7 @@ struct Dragon {
        uint16 generation;
        uint256[4] genome;
        uint256[2] parents;
-       uint8[11] race; // array of weights of dragon's types
+       uint8[11] types; // array of weights of dragon's types
        uint256 birth; // timestamp
 }
 Dragon[] public dragons;
@@ -608,26 +610,26 @@ Dragon[] public dragons;
 mapping (uint256 => bytes32) public names;
 mapping (uint256 => HealthAndMana) public healthAndMana;
 mapping (uint256 => Tactics) public tactics;
-mapping (uint256 => Fights) public fights;
+mapping (uint256 => Battles) public battles;
 mapping (uint256 => Skills) public skills;
 mapping (uint256 => Level) public levels;
-mapping (uint256 => uint32) public DSI; // Dragon Skillfulness Index multiplied by 100
+mapping (uint256 => uint32) public coolness; // Dragon Skillfulness Index multiplied by 100
 // id -> type of skill (dragon type)
 mapping (uint256 => uint8) public specialAttacks;
-mapping (uint256 => uint8) public specialDefences;
+mapping (uint256 => uint8) public specialDefenses;
 // classes:
 // 0 - no skill
 // 1 - attack multiplier
-// 2 - defence multiplier
+// 2 - defense multiplier
 // 3 - stamina multiplier
 // 4 - speed multiplier
-// 5 - intellect multiplier
+// 5 - intelligence multiplier
 // 6 - healing
 // 7 - mana regeneration
 // id -> class
 mapping (uint256 => uint8) public peacefulSkills;
 // classes:
-// 1 - attack, 2 - defence, 3 - stamina, 4 - speed, 5 - intellect
+// 1 - attack, 2 - defense, 3 - stamina, 4 - speed, 5 - intelligence
 // id -> class -> effect
 mapping (uint256 => mapping (uint8 => uint32)) public buffs;
 
@@ -1381,7 +1383,7 @@ Where\   $L_g$ \ is the gene level,   $f_{gv}$  is the gene variety factor,\ and
 
 \textit{Special attack} or \textit{special defense} is the ability to use the special powers available to each dragon family. It improves the \textit{attack} or \textit{defense} during a battle move. Those special skills use Mana. In  Table \ref{tab:Table of Mana costs, multipliers for a attack/defense and a probability of activation for Special Attack and Special Defense.} the amount of Mana necessary for the activation of the \textit{special attack }or the \textit{special defense }skill depending on the type of dragon is shown as well as the probability for its activation.\par
 
-For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the specialAttacks/specialDefences mappings (see Section \ref{Blockchain breeding algorithm}).\par
+For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the specialAttacks/specialDefenses mappings (see Section \ref{Blockchain breeding algorithm}).\par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 starts here %%%%%%%%%%%%%%%%%%%%
@@ -2326,7 +2328,7 @@ No sign up or any kind of registration is\ required as in order to offer engagin
 
 The data layer consists of two ERC721  \cite{Ethereum_2017_Sep_26}  non-fungible tokens which will represent two states of a dragon (an egg and a dragon) and an ERC20  \cite{Ethereum_2015_Nov_19}  which will represent the in-game cryptocurrency. \par
 
-The business logic layer consists of several smart contracts: egg core features contract, dragon core features contract, breeding, battling, marketplace and auth contract.\par
+The business logic layer consists of several smart contracts: egg core features contract, dragon core features contract, breeding, battling and marketplace contract.\par
 
 The game itself can be used without reliance on a back-end server for any purposes other than allowing users to derive the app from the server to the player’s browser. The app uses client-side rendering, therefore, our server is actually just a storage which can be easily replaced.\par
 
@@ -2334,7 +2336,9 @@ The game itself can be used without reliance on a back-end server for any purpos
 However, to make the life of players a bit easier another back-end server is used for:\par
 
 \begin{itemize}
-	\item Filtering of items offered on marketplaces\par
+	\item Filtering of items offered on marketplaces.\par
+
+	\item Opponent matchmaking for regular battles.\par
 
 	\item Storage and delivery of notifications while a player is not online.
 \end{itemize}\par
@@ -2389,6 +2393,16 @@ Furthermore, by staying on-chain we have the advantage of remaining more secure,
 While designing the game we considered several options for visualisation style of our dragons. Current status quo in cryptocollectible industry is  use of flat, simplified images which are easily merged into an image of a game character.\par
 
 However, we decided to switch to 3/4 view as it gives more realistic perspective to players and it makes the potential transition to VR or AR a bit easier.
+
+ %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
+
+%\newpage
+
+\vspace{\baselineskip}\subsection{Gradual decentralization}
+%\addcontentsline{toc}{subsection}{Gradual decentralization}
+\label{Gradual decentralization}  \par
+
+Bla-bla\par
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
@@ -2646,31 +2660,31 @@ _turnModificator);
         if (!isMelee) {
             damage = _multiplyByFloatNumber(damage, DISTANCE_ATTACK_WEAK__);
         }
-        uint32 defence = opponent.defence;
+        uint32 defense = opponent.defense;
         if (opponent.blocking) {
-            defence = _multiplyByFloatNumber(defence, DEFENCE_SUCCESS_MULTIPLY__);
+            defense = _multiplyByFloatNumber(defense, DEFENSE_SUCCESS_MULTIPLY__);
             if (opponent.specialBlocking) {
-                defence = _multiplyByFloatNumber(defence, opponent.specialDefenceFactor);
+                defense = _multiplyByFloatNumber(defense, opponent.specialDefenseFactor);
             }
         } else {
-            defence = _multiplyByFloatNumber(defence, DEFENCE_FAIL_MULTIPLY__);
+            defense = _multiplyByFloatNumber(defense, DEFENSE_FAIL_MULTIPLY__);
         }
-        if (damage > defence) {
-            opponent.health = _safeSub(opponent.health, damage.sub(defence));
+        if (damage > defense) {
+            opponent.health = _safeSub(opponent.health, damage.sub(defense));
         } else if (isMelee) {
-            attacker.health = _safeSub(attacker.health, defence.sub(damage));
+            attacker.health = _safeSub(attacker.health, defense.sub(damage));
         }
 
         return (attacker, opponent);
     }
 
-    function _defence(Dragon attacker, uint256 initialSeed, uint256 currentSeed) internal 
+    function _defense(Dragon attacker, uint256 initialSeed, uint256 currentSeed) internal 
 pure returns (Dragon, uint256) {
         uint8 specialRandom;
         (specialRandom, currentSeed) = _getRandomNumber(initialSeed, currentSeed);
-        bool isSpecial = specialRandom < attacker.specialDefenceChance;
-        if (isSpecial && attacker.mana >= attacker.specialDefenceCost) {
-            attacker.mana = attacker.mana.sub(attacker.specialDefenceCost);
+        bool isSpecial = specialRandom < attacker.specialDefenseChance;
+        if (isSpecial && attacker.mana >= attacker.specialDefenseCost) {
+            attacker.mana = attacker.mana.sub(attacker.specialDefenseCost);
             attacker.specialBlocking = true;
         }
         attacker.blocking = true;
@@ -2700,16 +2714,15 @@ pure returns (Dragon, uint256) {
 
             if (isMelee && distance > MAX_MELEE_ATTACK_DISTANCE) {
                 distance = _safeSub(distance, currentDragon.speed);
-            } else if (!isMelee && distance < MIN_ATTACK_DISTANCE) {
-                distance = _min(MAX_DISTANCE, _multiplyByFloatNumber(currentDragon.speed, 
-FALLBACK_SPEED_FACTOR__));
+            } else if (!isMelee && distance < MIN_RANGE_ATTACK_DISTANCE) {
+                distance = distance.add(_multiplyByFloatNumber(currentDragon.speed, FALLBACK_SPEED_FACTOR__));
             } else {
                 (rand, currentSeed) = _getRandomNumber(initialSeed, currentSeed);
                 (currentDragon, currentEnemy) = _attack(turnId, isMelee, currentDragon, 
 currentEnemy, rand);
             }
         } else {
-            (currentDragon, currentSeed) = _defence(currentDragon, initialSeed, currentSeed);
+            (currentDragon, currentSeed) = _defense(currentDragon, initialSeed, currentSeed);
         }
 
         currentEnemy = _resetBlocking(currentEnemy);
