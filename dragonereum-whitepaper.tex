@@ -207,7 +207,7 @@ Each dragon is owned and controlled by a particular address on the Ethereum netw
 
 Every dragon has its unique, immutable set of genes which determines all features and traits of the dragon.\par
 
-Therefore, a player will have to choose a type of dragon to control (Figure \ref{fig:A_selection_of_different_types_of_dragons__Each_row_represents_two_varieties_of_the_fire_ice_earth_air_and_magic_type_}), decide on a battle strategy, determine which skills to train with experience earned in battles and how to get better offsprings with further improved \textit{basic skills} (\textit{attack, defense, stamina, speed, }and\textit{ intelligence}). \par
+Therefore, a player will have to choose a type of dragon to control (Figure \ref{fig:A_selection_of_different_types_of_dragons__Each_row_represents_two_varieties_of_the_fire_ice_earth_air_and_cyber_type_}), decide on a battle strategy, determine which skills to train with experience earned in battles and how to get better offsprings with further improved \textit{basic skills} (\textit{attack, defense, stamina, speed, }and\textit{ intelligence}). \par
 
 
 
@@ -216,8 +216,8 @@ Therefore, a player will have to choose a type of dragon to control (Figure \ref
 \begin{Center}
 \begin{figure}[!ht]
 	\begin{Center}		\includegraphics[width=6.27in,height=2.79in]{./media/image13.png}
-		\caption{A selection of different types of dragons.  Each row represents two varieties of the fire, ice, earth, air, and magic type. }
-		\label{fig:A_selection_of_different_types_of_dragons__Each_row_represents_two_varieties_of_the_fire_ice_earth_air_and_magic_type_}
+		\caption{A selection of different types of dragons.  Each row represents two varieties of the fire, ice, earth, air, and cyber type. }
+		\label{fig:A_selection_of_different_types_of_dragons__Each_row_represents_two_varieties_of_the_fire_ice_earth_air_and_cyber_type_}
 	\end{Center}\end{figure}
 \end{Center}
 
@@ -236,7 +236,7 @@ As in the real world, occasionally there might be a mutation which will cause so
 
 As going up levels will require even more experience, it will become increasingly difficult to get any dragon’s descendants, thus limiting the total population of dragons and avoiding exponential growth.As such, the system is designed to encourage users to be active, and allow them to choose the winning strategy of their own choice.\par
 
-There are five different dragon types (air, water, earth, fire, and magic). Dragons of different types can interbreed, creating unique offsprings, as can be seen in Figure \ref{fig:Possible_offsprings_produced_by_dragons_of_different_types_interbreeding}.\par
+There are five different dragon types (air, water, earth, fire, and cyber). Dragons of different types can interbreed, creating unique offsprings, as can be seen in Figure \ref{fig:Possible_offsprings_produced_by_dragons_of_different_types_interbreeding}.\par
 
 
 
@@ -595,7 +595,7 @@ struct Skills {
        uint32 intellect;
 }
 // types:
-// 0 - water, 1 - fire, 2 - air, 3 - earth, 4 - magic
+// 0 - water, 1 - fire, 2 - air, 3 - earth, 4 - cyber
 struct Dragon {
        uint16 generation;
        uint256[4] genome;
@@ -970,7 +970,7 @@ Each dragon type/family is better at a particular basic skill, as shown in  Tabl
 \multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont 1}} \\
 \hhline{------}
 %row no:6
-\multicolumn{1}{|p{0.84in}|}{{\fontsize{10pt}{12.0pt}\selectfont Magic}} & 
+\multicolumn{1}{|p{0.84in}|}{{\fontsize{10pt}{12.0pt}\selectfont Cyber}} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont 1}} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont 1}} & 
 \multicolumn{1}{p{0.84in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont 1}} & 
@@ -995,7 +995,7 @@ Additionally, every dragon type has a unique advantage (in the form of higher da
 \begin{figure}[!ht]
 	\begin{Center}
 		\includegraphics[width=3.32in,height=2.84in]{./media/image22.jpg}
-		\caption{Each dragon family has an advantage over the two dragon families towards which the arrows are pointed: water over earth and fire, fire over air and magic, air over earth and water, earth over magic and fire, and magic over water and air.} 
+		\caption{Each dragon family has an advantage over the two dragon families towards which the arrows are pointed: water over earth and fire, fire over air and cyber, air over earth and water, earth over cyber and fire, and cyber over water and air.} 
 		\label{fig:Fire}
 	\end{Center}
 \end{figure}
@@ -1397,7 +1397,7 @@ For dragons with a mixed genome as a result of the breeding process the type use
 \multicolumn{1}{p{0.78in}|}{\centering{\fontsize{10pt}{12.0pt}\selectfont Water}} & 
 \multicolumn{1}{p{0.78in}|}{\centering{\fontsize{10pt}{12.0pt}\selectfont Earth}} & 
 \multicolumn{1}{p{0.78in}|}{\centering{\fontsize{10pt}{12.0pt}\selectfont Air}} & 
-\multicolumn{1}{p{0.78in}|}{\centering{\fontsize{10pt}{12.0pt}\selectfont Magic}} \\
+\multicolumn{1}{p{0.78in}|}{\centering{\fontsize{10pt}{12.0pt}\selectfont Cyber}} \\
 \hhline{------}
 %row no:2
 \multicolumn{6}{|p{5.58in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont Special Attack skills details}} \\
@@ -2453,7 +2453,7 @@ Use of location based protocols will bring new dimensions into the Dragonereum�
 %\addcontentsline{toc}{section}{Genesis}
  \label{Genesis}  \par
 
-An initial distribution of genesis eggs will be conducted during the game’s launch. 10 000 genesis eggs will be distributed in total (2000 of each egg type). Types of eggs (water, fire, air, earth, and magic) will be distributed on a sequential basis. Genesis eggs store pure types of dragons without additions from other types.\par
+An initial distribution of genesis eggs will be conducted during the game’s launch. 10 000 genesis eggs will be distributed in total (2000 of each egg type). Types of eggs (water, fire, air, earth, and cyber) will be distributed on a sequential basis. Genesis eggs store pure types of dragons without additions from other types.\par
 
 Each new genesis egg will be available for a claim once per block.\par
 
