@@ -431,8 +431,6 @@ where \textit{ now} is the block.timestamp.\par
 
 For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers are obtained.\par
 
-However, this approach is easily exploitable by smart contract. We this function can be called only by user controlled account.\par
-
 \vspace{\baselineskip}
 \subsection{Miner attack resistance analysis}
 %\addcontentsline{toc}{subsection}{Miner attack resistance analysis}
@@ -464,6 +462,10 @@ Battle transactions (regular battles only) allow players to earn Gold and XP for
 
 \begin{justify}
 Battle transactions can not be compromised by regular players as the RNG includes block.timestamp which is set by a miner. Players can guess what the timestamp will be by looking into historical data and making some assumptions, however it will still be random as it can not be determined in advance with certainty.
+\end{justify}\par
+
+\begin{justify}
+However, this approach is easily exploitable by a sophisticated attacker who can employ a smart contract to check the value of block.timestamp during the block creation. We overcome this issue by allowing this function to be called only by an externally owned accounts  \cite{account_types_gas_and_transactions} (onlyHuman modifier).
 \end{justify}\par
 
 \begin{justify}
