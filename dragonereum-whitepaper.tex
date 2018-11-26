@@ -2318,11 +2318,25 @@ Modern centralized games heavily rely on the entities that have created those ga
 
 At the same time a number of technologies unrelated to the gaming industry has been emerging which let users enjoy a transparent, censorship resistant, trustless, programmable and permissionless environment where anyone has full control over their private data (this technology stack is often referred to as Web 3.0  \cite{Josh_Stark_2018_Jun_6},  \cite{Stephan_Tual_2017_May_26}.\par
 
-We think that It would be great to create a full scale game built on top of those technologies,  so the created game will be 100$\%$  autonomous and decentralized, and no party will have control over any element of the game or its delivery mechanisms once it is launched, while still remaining engaging and fun compared to its centralized siblings.\par
+We think that It would be great to create a full scale game built on top of those technologies, so the created game will be 100$\%$  autonomous and decentralized, and no party will have control over any element of the game or its delivery mechanisms once it is launched, while still remaining engaging and fun compared to its centralized siblings.\par
 
-However, with Dragonereum our aim is more realistic and it is to create a decentralized game built on the Ethereum network which will have minimal ties to our servers at launch and gradually move to decentralized solutions (storage, naming services and indexing) once the game is released.\par
+However, with Dragonereum our aim is more realistic and it is to create a decentralized game which will have minimal ties to our servers at launch and gradually move to decentralized solutions (storage, naming services and indexing) once the game is released.\par
 
-In the long run and with the advancement of technology, we hope to remove any user dependency on us or on any other third party and switch to a fully autonomous and decentralized mode. This includes the control under deployed smart contracts which at some point of time should be voluntarily transferred to a new owner. This might be a DAO or just the 0x000..0001 address.\par
+At game's launch we will retain the possibility to update and pause smart contracts in a case of a critical bug or game balance issues. However, once the smart contracts will be battle-tested and all necessary security measures will be taken, the control over deployed the smart contracts will be voluntarily transferred to a new owner. This might be a DAO or just the 0x000..0001 address.\par
+
+\begin{samepage}
+The upgrade mechanism works as follows:\par
+
+\begin{itemize}
+\item A new version of a required smart contract is deployed.\par
+
+\item Ownership of this contract is transfered to UpgradeController.\par
+
+\item Migrate function with old and new smart contracts is called by our multisig address.
+\end{itemize}\par
+\end{samepage}
+
+In the long run and with the advancement of technology, we hope to remove any user dependency on us or on any other third party and switch to a fully autonomous and decentralized mode.\par
 
 The game is currently accessible via browser with a MetaMask plugin installed (\href{https://metamask.io/}{\textcolor[HTML]{1155CC}{\uline{https://metamask.io/}}}).\par
 
