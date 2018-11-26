@@ -292,9 +292,9 @@ The results of a battle will be displayed in a rich visual animation, which can 
 
 A battle winner receives Experience Points (XP). When the required quantity of XP are earned, the dragon gets a level up and receives some DNA Points (DP), which can be used for breeding or converted into body part level ups and thereby improvements of skills. \par
 
-Additionally, if the attacking dragon wins, it is credited with Gold as a bonus. Gold is an in-game cryptocurrency which will be distributed to winners from the game’s balance, and the ticker symbol for it is denoted by GOLD. The game’s creators will not have any control over Gold stored in the Dragonereum Gold account once it has been deployed to the blockchain. \par
+Additionally, if the attacking dragon wins, it is credited with Gold as a bonus. Gold is an in-game cryptocurrency which will be distributed to winners from the game’s balance, and the ticker symbol for it is denoted by GOLD. The game’s creators will not have any control over Gold stored in the Dragonereum's Treasury (which is one of the game’s smart contracts) once it has been deployed to the blockchain. \par
 
-As Gold has limited availability, the reward for battle winners will decrease over time. The value of the reward will be aligned with the number of dragons in the population and the number of battles held. Once the initial balance in the game's Gold account becomes depleted, the reward adjusts itself according to the sum of fees collected. These are collected for egg incubation and additional in-game features. Consequently, the first players will have an advantage with regards to Gold accumulation.\par
+As Gold has limited availability, the reward for battle winners will decrease over time. The value of the reward will be aligned with the number of dragons in the population and the number of battles held. Once the initial balance in the game's Treasury becomes depleted, the reward adjusts itself according to the sum of fees collected. These are collected for egg incubation and additional in-game features. Consequently, the first players will have an advantage with regards to Gold accumulation.\par
 
 The only price set by Dragonereum is the amount of Gold required to incubate an egg. This way, Dragonereum controls the number of incubations along with the quantity of new dragons in its overall population.\par
 
@@ -302,7 +302,7 @@ Gold can also be spent on in-game services which will be offered by other player
 
 Furthermore, as an additional incentive for players to get higher valued dragons and to engage in battles, there will be an internal ranking system, represented by a system of leaderboards, where players can keep track of their achievements and how they score against other dragon owners.\par
 
-As already mentioned the battles described above are regular battles. Those battles allow players to earn XP and Gold from the Treasury (which is one of the game’s smart contracts).\par
+As already mentioned the battles described above are regular battles. Those battles allow players to earn XP and Gold from the Treasury.\par
 
 Here, we will briefly overview gladiator battles, which are technically the same battles as regular battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn XP or Gold from the Treasury. The simplified process of the gladiator battle can be presented as follows:\par
 
@@ -1855,7 +1855,7 @@ On the other hand, dragons with higher DS\textit{ }will be able to receive Gold 
 %\addcontentsline{toc}{subsection}{Early adopter advantage}
 \label{Early adopter advantage} \par
 
-As\ it was discussed in  Section \ref{Introduction to Dragonereum}  the game has its own Gold account, where all unallocated Gold is held. It is used to reward battle winners and leaderboard entrants. The \textit{battle winner reward} is calculated using Equation \ref{Eq:R}  below,\par
+As\ it was discussed in  Section \ref{Introduction to Dragonereum}  the game has the Treasury, where all unallocated Gold is held. It is used to reward battle winners and leaderboard entrants. The \textit{battle winner reward} is calculated using Equation \ref{Eq:R}  below,\par
 
 
 \begin{center}
@@ -2051,7 +2051,7 @@ The \textit{battle winner reward} settles at 6.88 to 10.38 GOLD per battle depen
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 10 Ends here %%%%%%%%%%%%%%%%%%%%
 
 
-In Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} the cost of Gold in dollars calculated as a sum of mining fees cost necessary to mine the corresponding transactions is shown (light blue line) versus the number of battles held, which just like in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} is a variable that represents time in this synthetic environment. The cost of Gold grows because the amount of Gold distributed to winners reduces with the increasing number of battles held\ (see\ Section   \ref{Early adopter advantage}),\ making Gold more valuable.The median {\it battle winner reward} shown in the dark blue line decreases, as it depends on the amount of Gold in the game’s account, see Equation  \ref{Eq:R}, which also decreases as shown in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)}.\par
+In Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} the cost of Gold in dollars calculated as a sum of mining fees cost necessary to mine the corresponding transactions is shown (light blue line) versus the number of battles held, which just like in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} is a variable that represents time in this synthetic environment. The cost of Gold grows because the amount of Gold distributed to winners reduces with the increasing number of battles held\ (see\ Section   \ref{Early adopter advantage}),\ making Gold more valuable.The median {\it battle winner reward} shown in the dark blue line decreases, as it depends on the amount of Gold in the Treasury, see Equation  \ref{Eq:R}, which also decreases as shown in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)}.\par
 
 The mining cost for 1 GOLD is between \$0.086 and \$0.131, at 3,000,000 battles, Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} (light blue line).  It is calculated as:  ${{C}\over{\bar R}}$, where C is the cost of the transaction and  $\bar R$ is the median \textit{battle winner reward} (the median battle reward is shown as a function of the number of battles held in Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).}).\par
 
@@ -2143,7 +2143,7 @@ In this scenario players randomly breed and level up dragons. In our opinion thi
 
 The game balance settles at approximately 6M GOLD. The \textit{battle winner reward} settles between 3.64 and 26.15 GOLD per battle depending on the DS of the winning dragon.\par
 
-In Figure \ref{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in Gold (black line).}, just as in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the initial sharp growth of the dragon population is due to the distribution of genesis eggs (red line). The black line shows the amount of Gold in the game’s account balance, which is declining due to the distribution of Gold to the battle winners. It will settle at approximately 6M GOLD once the number of battles held reaches 3,000,000, see also  Table \ref{tab:Same as Table 11, but for Case Study 2}, column 3.\par
+In Figure \ref{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in Gold (black line).}, just as in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the initial sharp growth of the dragon population is due to the distribution of genesis eggs (red line). The black line shows the amount of Gold in the Treasury, which is declining due to the distribution of Gold to the battle winners. It will settle at approximately 6M GOLD once the number of battles held reaches 3,000,000, see also  Table \ref{tab:Same as Table 11, but for Case Study 2}, column 3.\par
 
 
 
