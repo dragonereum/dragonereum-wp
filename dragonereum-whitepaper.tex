@@ -254,7 +254,7 @@ There are five different dragon types (air, water, earth, fire, and magic). Drag
 
 
 
-Every dragon has the ability to participate in battles. There will be two types of battles: training battles and gladiator battles. Training battles are described below, where they are referred to simply as battles, while gladiator battles will be outlined at the end of this section.\par
+Every dragon has the ability to participate in battles. There will be two types of battles: regular battles and gladiator battles. Regular battles are described below, where they are referred to simply as battles, while gladiator battles will be outlined at the end of this section.\par
 
 Taking into account the fact that battles are held on-chain they are represented not by a conjoined combat of two dragons but rather by an attack of one active dragon on another passive dragon. When a user wants their dragon to engage in a battle, providing their dragon has enough Health Points (HP), the application offers a choice of dragons of similar Dragon Strength (DS) with which it can battle. The DS is described in detail in Section \ref{Leveling up dragons and dragon population growth}. Once a user chooses an opponent, the transaction with the battle is sent to the blockchain. As soon as the transaction is mined and included into the block, a user can see an animated battle together with the battle results\footnote{The defending dragon’s owner will similarly have the opportunity to see the animated battle once they go online}.\par
 
@@ -302,9 +302,9 @@ Gold can also be spent on in-game services which will be offered by other player
 
 Furthermore, as an additional incentive for players to get higher valued dragons and to engage in battles, there will be an internal ranking system, represented by a system of leaderboards, where players can keep track of their achievements and how they score against other dragon owners.\par
 
-As already mentioned the battles described above are training battles. Those battles allow players to earn XP and Gold from the Treasury (which is one of the game’s smart contracts).\par
+As already mentioned the battles described above are regular battles. Those battles allow players to earn XP and Gold from the Treasury (which is one of the game’s smart contracts).\par
 
-Here, we will briefly overview gladiator battles, which are technically the same battles as training battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn XP or Gold from the Treasury. The simplified process of the gladiator battle can be presented as follows:\par
+Here, we will briefly overview gladiator battles, which are technically the same battles as regular battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn XP or Gold from the Treasury. The simplified process of the gladiator battle can be presented as follows:\par
 
 
 \begin{itemize}
@@ -457,7 +457,7 @@ Therefore, a malicious miner can have 10 times higher possibilities to manipulat
 \end{justify}\par
 
 \begin{justify}
-Battle transactions (training battles only) allow players to earn Gold and XP for dragons participating in battles. We assume that these kind of transactions are low-value as each battle rewards users with a limited amount of in-game cryptocurrency and XP which does not have direct monetary value.
+Battle transactions (regular battles only) allow players to earn Gold and XP for dragons participating in battles. We assume that these kind of transactions are low-value as each battle rewards users with a limited amount of in-game cryptocurrency and XP which does not have direct monetary value.
 \end{justify}\par
 
 \begin{justify}
@@ -1567,9 +1567,9 @@ where A is the \textit{attack}, D is the \textit{defense}, S is the \textit{stam
 
 The constants in Equation \ref{Eq:DS} were carefully obtained through a rigorous simulation procedure ensuring that dragons with similar DS have an equal chance at winning the battle. Numerous battles between randomly chosen dragons with a similar amount of total basic skills were simulated and if there were battles where a dragon had an advantage, the values were adjusted in order to avoid this situation. The process was repeated until there were no dragons that had a winning advantage and every dragon, regardless of their skills or traits, has a 50$\%$  chance of winning against a dragon with a similar DS.\par
 
-Based on the DS, the game’s algorithms offer suitable opponents for training battles. A short description and the corresponding code for the training battles are given in the Appendix.\par
+Based on the DS, the game’s algorithms offer suitable opponents for regular battles. A short description and the corresponding code for the regular battles are given in the Appendix.\par
 
-As a result of these training battles the winners will receive XP. The number of XP won, in the case when the attacking dragon is the winner, is calculated according to the formulas below.\par
+As a result of these battles the winners will receive XP. The number of XP won, in the case when the attacking dragon is the winner, is calculated according to the formulas below.\par
 
 
 \begin{center}
@@ -2419,7 +2419,7 @@ The compliance of Dragonereum’s ERC721 tokens with the Wyvern Protocol (\url{h
 
 There are many game events which can be used as a base for a prediction, for example, battle winners and leaderboard entrants. Since in Dragonereum everything is kept on-chain, third-party services such as Augur (\url{https://www.augur.net/}) can be used to place bets on events and outcomes stored in the game’s smart contracts (even those that we can not predict at the moment).\par
 
-With the current implementation of the Augur ecosystem we do not see the possibility to bet on small events (such as the outcome of a training battle), however, other betting services (DiceyBit \url{https://diceybit.com}) already offer those capabilities with the use of data supplied by the game developers through an API. On the other hand, Augur can be used for larger scale events, such as predicting the maximum Dragon Skillfulness Index at a future date.\par
+With the current implementation of the Augur ecosystem we do not see the possibility to bet on small events (such as the outcome of a regular battle), however, other betting services (DiceyBit \url{https://diceybit.com}) already offer those capabilities with the use of data supplied by the game developers through an API. On the other hand, Augur can be used for larger scale events, such as predicting the maximum Dragon Skillfulness Index at a future date.\par
 
 
 \vspace{\baselineskip}
@@ -2608,12 +2608,12 @@ In addition, we presented a large variety of possible future integrations of the
 
 %\vspace{\baselineskip}
   \begin{Large}
-  {Training Battles}%&\label{Training Battles}  \par
+  {Regular Battles}%&\label{Regular Battles}  \par
   \end{Large}
 
 
 \vspace{\baselineskip}
-Below is the code describing the execution of the training battles.\par
+Below is the code describing the execution of the regular battles.\par
 
 \begin{footnotesize}
 \begin{verbatim}
