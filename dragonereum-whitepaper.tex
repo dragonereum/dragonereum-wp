@@ -302,9 +302,9 @@ Gold can also be spent on in-game services which will be offered by other player
 
 Furthermore, as an additional incentive for players to get higher valued dragons and to engage in battles, there will be an internal ranking system, represented by a system of leaderboards, where players can keep track of their achievements and how they score against other dragon owners.\par
 
-As already mentioned the battles described above are training battles. Those battles allow players to earn XP and Gold from the game account.\par
+As already mentioned the battles described above are training battles. Those battles allow players to earn XP and Gold from the Treasury (which is one of the game’s smart contracts).\par
 
-Here, we will briefly overview gladiator battles, which are technically the same battles as training battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn XP or Gold from the game account. The simplified process of the gladiator battle can be presented as follows:\par
+Here, we will briefly overview gladiator battles, which are technically the same battles as training battles, but they give players the possibility to place a bet on one of the dragons. They do not let players earn XP or Gold from the Treasury. The simplified process of the gladiator battle can be presented as follows:\par
 
 
 \begin{itemize}
@@ -1855,7 +1855,7 @@ On the other hand, dragons with higher DS\textit{ }will be able to receive Gold 
 %\addcontentsline{toc}{subsection}{Early adopter advantage}
 \label{Early adopter advantage} \par
 
-As\ it was discussed in  Section \ref{Introduction to Dragonereum}  the game has its own Gold account, where all unallocated Gold is held. It is used to reward battle winners and leaderboard entrants. The \textit{battle winner reward} is calculated using   Equation \ref{Eq:R}  below,\par
+As\ it was discussed in  Section \ref{Introduction to Dragonereum}  the game has its own Gold account, where all unallocated Gold is held. It is used to reward battle winners and leaderboard entrants. The \textit{battle winner reward} is calculated using Equation \ref{Eq:R}  below,\par
 
 
 \begin{center}
@@ -1865,7 +1865,7 @@ As\ it was discussed in  Section \ref{Introduction to Dragonereum}  the game has
 \end{center}
 
 \vspace{\baselineskip}
-\textit{w}here R is the \textit{battle winner reward}, G is the Gold balance in the game account, $I_{ds}$ was defined in Equation \ref{Eq:I_{ds}} above, and $f_{DS}$ is the \textit{dragon strength} \textit{factor} defined as,\par
+\textit{w}here R is the \textit{battle winner reward}, G is the Gold balance in the Treasury, $I_{ds}$ was defined in Equation \ref{Eq:I_{ds}} above, and $f_{DS}$ is the \textit{dragon strength} \textit{factor} defined as,\par
 
 
 \begin{center}
@@ -1952,7 +1952,7 @@ We study in detail three different cases. It should be noted that not all possib
 %row no:2
 \multicolumn{1}{|p{0.6in}}{{\fontsize{10pt}{12.0pt}\selectfont Number of Battles}} & 
 \multicolumn{1}{|p{0.64in}}{{\fontsize{10pt}{12.0pt}\selectfont Population}} & 
-\multicolumn{1}{|p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Game account (GOLD)}} & 
+\multicolumn{1}{|p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Treasury (GOLD)}} & 
 \multicolumn{1}{|p{0.99in}}{{\fontsize{10pt}{12.0pt}\selectfont Median battle reward (GOLD)}} & 
 \multicolumn{1}{|p{0.94in}}{{\fontsize{10pt}{12.0pt}\selectfont Median cost of Gold (\$)}} & 
 \multicolumn{1}{|p{0.86in}|}{{\fontsize{10pt}{12.0pt}\selectfont Cost of egg incubation (\$)}} \\
@@ -2006,8 +2006,8 @@ We study in detail three different cases. It should be noted that not all possib
 \multicolumn{1}{|p{0.86in}|}{\raggedleft {\fontsize{10pt}{12.0pt}\selectfont 113}} \\
 \hhline{------}
 
-\end{tabular}\caption{Case Study 1: the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the game account (column 3), the median {\it battle winner reward} (column 4), the median cost of Gold in \$ (column 5), and the cost of an egg incubation (column 6).}
-\label{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the game account (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. }
+\end{tabular}\caption{Case Study 1: the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median {\it battle winner reward} (column 4), the median cost of Gold in \$ (column 5), and the cost of an egg incubation (column 6).}
+\label{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. }
 
  \end{table}
 
@@ -2015,7 +2015,7 @@ We study in detail three different cases. It should be noted that not all possib
 %%%%%%%%%%%%%%%%%%%% Table No: 12 ends here %%%%%%%%%%%%%%%%%%%%
 
 
-In this scenario players breed dragons with a 90$\%$  probability and level them up with a 10$\%$  probability. The game balance drops to around 30M GOLD and then settles at approximately 33M GOLD as a result of the high volume of egg incubations, see  Table \ref{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the game account (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. } (column 3), and Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the game account balance in GOLD (black line)} (black line). In Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the game account balance in GOLD (black line)} the dragon population growth is shown as a function of the number of battles held. The number of battles in these case studies is a more appropriate variable than using a synthetic time, as it is problematic to predict the actual number of active players. The initial sharp growth of the dragon population is due to the distribution of genesis eggs.\par
+In this scenario players breed dragons with a 90$\%$  probability and level them up with a 10$\%$  probability. The game balance drops to around 30M GOLD and then settles at approximately 33M GOLD as a result of the high volume of egg incubations, see  Table \ref{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. } (column 3), and Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} (black line). In Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the dragon population growth is shown as a function of the number of battles held. The number of battles in these case studies is a more appropriate variable than using a synthetic time, as it is problematic to predict the actual number of active players. The initial sharp growth of the dragon population is due to the distribution of genesis eggs.\par
 
 
 
@@ -2024,8 +2024,8 @@ In this scenario players breed dragons with a 90$\%$  probability and level them
 \begin{figure}[H]
 	\begin{Center}
 		\includegraphics[width=6.27in,height=2.79in]{./media/CS1nimage21.png}
-		\caption{The number of dragons (red line), and the game account balance in GOLD (black line)  as a function of the number of battles held.}
-		\label{fig:The number of dragons (red line) as a function of the number of battles held, and the game account balance in GOLD (black line)}
+		\caption{The number of dragons (red line), and the Treasury balance in GOLD (black line)  as a function of the number of battles held.}
+		\label{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)}
 	\end{Center}
 \end{figure}
 
@@ -2033,7 +2033,7 @@ In this scenario players breed dragons with a 90$\%$  probability and level them
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 9 Ends here %%%%%%%%%%%%%%%%%%%%
 
 
-The \textit{battle winner reward} settles at 6.88 to 10.38 GOLD per battle depending on the DS\textit{.} This small range of reward values can be explained by the fact that all dragons are of similar DS since the players do not level up dragons and spend all DP on breeding. The exact values of the median \textit{battle winner reward }can be seen in  Table \ref{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the game account (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. } (column 4), and Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} (dark blue line).\par
+The \textit{battle winner reward} settles at 6.88 to 10.38 GOLD per battle depending on the DS\textit{.} This small range of reward values can be explained by the fact that all dragons are of similar DS since the players do not level up dragons and spend all DP on breeding. The exact values of the median \textit{battle winner reward }can be seen in  Table \ref{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. } (column 4), and Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} (dark blue line).\par
 
 
 
@@ -2051,7 +2051,7 @@ The \textit{battle winner reward} settles at 6.88 to 10.38 GOLD per battle depen
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 10 Ends here %%%%%%%%%%%%%%%%%%%%
 
 
-In Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} the cost of Gold in dollars calculated as a sum of mining fees cost necessary to mine the corresponding transactions is shown (light blue line) versus the number of battles held, which just like in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the game account balance in GOLD (black line)} is a variable that represents time in this synthetic environment. The cost of Gold grows because the amount of Gold distributed to winners reduces with the increasing number of battles held\ (see\ Section   \ref{Early adopter advantage}),\ making Gold more valuable.The median {\it battle winner reward} shown in the dark blue line decreases, as it depends on the amount of Gold in the game’s account, see Equation  \ref{Eq:R}, which also decreases as shown in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the game account balance in GOLD (black line)}.\par
+In Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} the cost of Gold in dollars calculated as a sum of mining fees cost necessary to mine the corresponding transactions is shown (light blue line) versus the number of battles held, which just like in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} is a variable that represents time in this synthetic environment. The cost of Gold grows because the amount of Gold distributed to winners reduces with the increasing number of battles held\ (see\ Section   \ref{Early adopter advantage}),\ making Gold more valuable.The median {\it battle winner reward} shown in the dark blue line decreases, as it depends on the amount of Gold in the game’s account, see Equation  \ref{Eq:R}, which also decreases as shown in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)}.\par
 
 The mining cost for 1 GOLD is between \$0.086 and \$0.131, at 3,000,000 battles, Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).} (light blue line).  It is calculated as:  ${{C}\over{\bar R}}$, where C is the cost of the transaction and  $\bar R$ is the median \textit{battle winner reward} (the median battle reward is shown as a function of the number of battles held in Figure \ref{fig:The cost of Gold in dollars calculated as a sum of mining fees cost (light blue line), and the median battle reward in Gold versus the number of battles held (dark blue line).}).\par
 
@@ -2076,7 +2076,7 @@ Therefore, economically motivated players will start leveling up dragons in orde
 %row no:2
 \multicolumn{1}{|p{0.6in}}{{\fontsize{10pt}{12.0pt}\selectfont Number of Battles}} & 
 \multicolumn{1}{|p{0.64in}}{{\fontsize{10pt}{12.0pt}\selectfont Population}} & 
-\multicolumn{1}{|p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Game account (GOLD)}} & 
+\multicolumn{1}{|p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Treasury (GOLD)}} & 
 \multicolumn{1}{|p{0.99in}}{{\fontsize{10pt}{12.0pt}\selectfont Median battle reward (GOLD)}} & 
 \multicolumn{1}{|p{0.94in}}{{\fontsize{10pt}{12.0pt}\selectfont Median cost of Gold (\$)}} & 
 \multicolumn{1}{|p{0.86in}|}{{\fontsize{10pt}{12.0pt}\selectfont Cost of egg incubation (\$)}} \\
@@ -2130,7 +2130,7 @@ Therefore, economically motivated players will start leveling up dragons in orde
 \multicolumn{1}{|p{0.86in}|}{\raggedleft {\fontsize{10pt}{12.0pt}\selectfont 114}} \\
 \hhline{------}
 
-\end{tabular}\caption{Case Study 2: the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the game account (column 3), the median {\it battle winner reward} (column 4), the median cost of Gold in \$ (column 5), and the cost of an egg incubation (column 6).}
+\end{tabular}\caption{Case Study 2: the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median {\it battle winner reward} (column 4), the median cost of Gold in \$ (column 5), and the cost of an egg incubation (column 6).}
 \label{tab:Same as Table 11, but for Case Study 2}
 
  \end{table}
@@ -2143,7 +2143,7 @@ In this scenario players randomly breed and level up dragons. In our opinion thi
 
 The game balance settles at approximately 6M GOLD. The \textit{battle winner reward} settles between 3.64 and 26.15 GOLD per battle depending on the DS of the winning dragon.\par
 
-In Figure \ref{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the game account balance in Gold (black line).}, just as in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the game account balance in GOLD (black line)} the initial sharp growth of the dragon population is due to the distribution of genesis eggs (red line). The black line shows the amount of Gold in the game’s account balance, which is declining due to the distribution of Gold to the battle winners. It will settle at approximately 6M GOLD once the number of battles held reaches 3,000,000, see also  Table \ref{tab:Same as Table 11, but for Case Study 2}, column 3.\par
+In Figure \ref{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in Gold (black line).}, just as in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the initial sharp growth of the dragon population is due to the distribution of genesis eggs (red line). The black line shows the amount of Gold in the game’s account balance, which is declining due to the distribution of Gold to the battle winners. It will settle at approximately 6M GOLD once the number of battles held reaches 3,000,000, see also  Table \ref{tab:Same as Table 11, but for Case Study 2}, column 3.\par
 
 
 
@@ -2152,8 +2152,8 @@ In Figure \ref{fig:CS2The number of dragons (red line) as a function of the numb
 \begin{figure}[H]
 	\begin{Center}
 		\includegraphics[width=6.27in,height=2.76in]{./media/CS2nimage30.png}
-		\caption{The number of dragons (red line), and the game account balance in Gold (black line) as a function of the number of battles held for Case Study 2.}
-		\label{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the game account balance in Gold (black line).}
+		\caption{The number of dragons (red line), and the Treasury balance in Gold (black line) as a function of the number of battles held for Case Study 2.}
+		\label{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in Gold (black line).}
 	\end{Center}
 \end{figure}
 
@@ -2195,7 +2195,7 @@ The mining cost for 1 GOLD is between \$0.034 and \$0.25, at 3,000,000 battles, 
 %row no:2
 \multicolumn{1}{|p{0.6in}}{{\fontsize{10pt}{12.0pt}\selectfont Number of Battles}} & 
 \multicolumn{1}{|p{0.64in}}{{\fontsize{10pt}{12.0pt}\selectfont Population}} & 
-\multicolumn{1}{|p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Game account (GOLD)}} & 
+\multicolumn{1}{|p{0.9in}}{{\fontsize{10pt}{12.0pt}\selectfont Treasury (GOLD)}} & 
 \multicolumn{1}{|p{0.99in}}{{\fontsize{10pt}{12.0pt}\selectfont Median battle reward (GOLD)}} & 
 \multicolumn{1}{|p{0.94in}}{{\fontsize{10pt}{12.0pt}\selectfont Median cost of Gold (\$)}} & 
 \multicolumn{1}{|p{0.86in}|}{{\fontsize{10pt}{12.0pt}\selectfont Cost of egg incubation ($\$$)}} \\
@@ -2245,7 +2245,7 @@ The mining cost for 1 GOLD is between \$0.034 and \$0.25, at 3,000,000 battles, 
 \multicolumn{5}{|p{4.33in}|}{\Centering {\fontsize{10pt}{12.0pt}\selectfont Battles stop as no GOLD is distributed and dragons which reached the 10th level stop battling as they do not need additional experience}} \\
 \hhline{------}
 
-\end{tabular}\caption{Case Study 3: the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the game account (column 3), the median {\it battle winner reward} (column 4), the median cost of Gold in \$ (column 5), and the cost of an egg incubation (column 6).}
+\end{tabular}\caption{Case Study 3: the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median {\it battle winner reward} (column 4), the median cost of Gold in \$ (column 5), and the cost of an egg incubation (column 6).}
 \label{tab:Same as Table 11, but for Case Study 3}
 
  \end{table}
@@ -2256,7 +2256,7 @@ The mining cost for 1 GOLD is between \$0.034 and \$0.25, at 3,000,000 battles, 
 
 In this scenario players level up dragons on all levels with a 90$\%$  probability and breed with a 10$\%$  probability.\par
 
-The game balance drops to 0 GOLD at approximately 2,100,000 battles, as a result of the low amount of fees collected for egg incubations, as is seen in Figure \ref{fig:The number of dragons (red line), and the game account balance in Gold (black line) as a function of the number of battles held for Case Study 3.}}, and in column 3 of  Table \ref{tab:Same as Table 11, but for Case Study 3}. Therefore the \textit{battle winner reward} will not be paid. This is shown in Figure \ref{fig:The median battle reward in Gold versus the number of battles held (dark blue line) for Case Study 3.}, where the {\it battle winner reward} drops sharply to zero with the number of battles held (dark blue line). Just before that at 2 million battles the median {\it battle winner reward} will be 0.99 GOLD, and the median mining cost of Gold will be \$0.904.  After that once the game balance is at 0 GOLD, the price cannot be predicted. The price of Gold cannot be estimated due to the fact that when there is no Gold in the game account, the model assumes that the price of Gold is equal to the transaction fees price divided by zero (or another very small amount), thus making it too big to display on the graph.\par
+The game balance drops to 0 GOLD at approximately 2,100,000 battles, as a result of the low amount of fees collected for egg incubations, as is seen in Figure \ref{fig:The number of dragons (red line), and the Treasury balance in Gold (black line) as a function of the number of battles held for Case Study 3.}}, and in column 3 of  Table \ref{tab:Same as Table 11, but for Case Study 3}. Therefore the \textit{battle winner reward} will not be paid. This is shown in Figure \ref{fig:The median battle reward in Gold versus the number of battles held (dark blue line) for Case Study 3.}, where the {\it battle winner reward} drops sharply to zero with the number of battles held (dark blue line). Just before that at 2 million battles the median {\it battle winner reward} will be 0.99 GOLD, and the median mining cost of Gold will be \$0.904.  After that once the game balance is at 0 GOLD, the price cannot be predicted. The price of Gold cannot be estimated due to the fact that when there is no Gold in the Treasury, the model assumes that the price of Gold is equal to the transaction fees price divided by zero (or another very small amount), thus making it too big to display on the graph.\par
 
 
 
@@ -2265,8 +2265,8 @@ The game balance drops to 0 GOLD at approximately 2,100,000 battles, as a result
 \begin{figure}[H]
 	\begin{Center}
 		\includegraphics[width=6.27in,height=2.78in]{./media/CS3nimage17.png}
-		\caption{The number of dragons (red line), and the game account balance in Gold (black line) as a function of the number of battles held for Case Study 3.}
-		\label{fig:The number of dragons (red line), and the game account balance in Gold (black line) as a function of the number of battles held for Case Study 3.}
+		\caption{The number of dragons (red line), and the Treasury balance in Gold (black line) as a function of the number of battles held for Case Study 3.}
+		\label{fig:The number of dragons (red line), and the Treasury balance in Gold (black line) as a function of the number of battles held for Case Study 3.}
 	\end{Center}
 \end{figure}
 
@@ -2549,9 +2549,9 @@ There will be 60,000,000 GOLD minted during product deployment and no new coins 
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 15 Ends here %%%%%%%%%%%%%%%%%%%%
 
 
-\textbf{Game account}\par
+\textbf{The Treasury}\par
 
-As Dragonereum will not have any kind of initial coin offerings or a sale, the majority (75$\%$ ) of tokens will be allocated to the game account (shown in blue in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}).\par
+As Dragonereum will not have any kind of initial coin offerings or a sale, the majority (75$\%$ ) of tokens will be allocated to the Treasury (shown in blue in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}).\par
 
 \textbf{Founders}\par
 
