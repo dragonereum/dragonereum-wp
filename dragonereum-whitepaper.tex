@@ -256,7 +256,7 @@ There are five different dragon types (air, water, earth, fire, and cyber). Drag
 
 Every dragon has the ability to participate in battles. There will be two types of battles: regular battles and gladiator battles. Regular battles are described below, where they are referred to simply as battles, while gladiator battles will be outlined at the end of this section.\par
 
-Taking into account the fact that battles are held on-chain they are represented not by a conjoined combat of two dragons but rather by an attack of one active dragon on another passive dragon. When a user wants their dragon to engage in a battle, providing their dragon has enough Health Points (HP), the application offers a choice of dragons of similar Dragon Strength (DS) with which it can battle. The DS is described in detail in Section \ref{Dragon population growth}. Once a user chooses an opponent, the transaction with the battle is sent to the blockchain. As soon as the transaction is mined and included into the block, a user can see an animated battle together with the battle results\footnote{The defending dragon’s owner will similarly have the opportunity to see the animated battle once they go online}.\par
+Taking into account the fact that battles are held on-chain they are represented not by a conjoined combat of two dragons but rather by an attack of one active dragon on another passive dragon. When a user wants their dragon to engage in a battle, providing their dragon has enough Health Points (HP), the application offers a choice of dragons of similar Dragon Strength (DS) with which it can battle. The DS is described in detail in Section \ref{Leveling up dragons}. Once a user chooses an opponent, the transaction with the battle is sent to the blockchain. As soon as the transaction is mined and included into the block, a user can see an animated battle together with the battle results\footnote{The defending dragon’s owner will similarly have the opportunity to see the animated battle once they go online}.\par
 
 The attacking dragon always has an advantage as it can adjust its battle tactics according to its opponent’s skills. Defending dragons use the default battle tactics defined previously by the owner. All battle results are dependent on the overall skills of the battling dragons, as well as the battle tactics used during the battle. The battle tactics can be defined by two sliders:
 
@@ -1153,7 +1153,7 @@ The chance for a regular mutation to occur (excluding the case when two relative
   \end{samepage}
 \end{itemize}
 
-Details of inbreeding penalties and chances are described in our medium  \mbox{articles (\url{https://medium.com/@dragonereum})}. \par
+Details of inbreeding penalties and chances are described in our Medium  \mbox{articles (\url{https://medium.com/@dragonereum})}. \par
 
 If a player chooses to inbreed close relatives there is a high probability for a negative mutation will occur. This probability depends on different cases and is:\par
 
@@ -1273,7 +1273,7 @@ In order to represent the dragon skillset in an easier way we offer an aggregati
 
 \begin{figure}[!ht]
 	\begin{FlushLeft}		\includegraphics[width=6.27in,height=2.49in]{./media/image21.png}
-		\caption{The dragon display, showing the image of the dragon, the dragon's name and the Dragon Skillfulness Index on the left of the name.}
+		\caption{The dragon display, showing the image of the dragon, the dragon's name and the Dragon Skillfulness Index under the name.}
 		\label{fig:The_dragon_display_showing_the_image_of_the_dragon_the_dragons_name_and_the_Dragon_Skillfulness_Index_on_the_left_of_the_name}
 	\end{FlushLeft}\end{figure}
 
@@ -1539,13 +1539,11 @@ The dragon offering the \textit{special peaceful skill} will have to use its Man
 \textit{Special peaceful skills} can be used in both regular and gladiator battles. In the case of gladiator battles a dragon will be freezed once the battle is initiated and no \textit{special  peaceful skill} or body part level ups can be applied.\par
 
 \setlength{\parskip}{9.96pt}
-\subsection{Dragon population growth}
-%\addcontentsline{toc}{subsection}{Dragon population growth}
- \label{Dragon population growth}   \par
+\subsection{Leveling up dragons}
+%\addcontentsline{toc}{subsection}{Leveling up dragons}
+ \label{Leveling up dragons}   \par
 
-Now that we explained how dragon skills are calculated we can talk about dragon population growth.\par
-
-There is no hard cap on the number of dragons in the population. However, a dragon will be able to breed only if it has accumulated the required number of XP for a Dragon Level Up and as a result has acquired the necessary amount of DP.\par
+A dragon will be able to breed only if it has accumulated the required number of XP for a Dragon Level Up and as a result has acquired the necessary amount of DP.\par
 
 At this point, a user will have to decide whether to upgrade their dragon (level up its body parts and get a stronger dragon) or to interbreed it with another dragon.\par
 
@@ -1842,16 +1840,6 @@ Here we will look at the amount of DNA Points required for breeding at each leve
 \setlength{\parskip}{9.96pt}
 As can be noted, the amount of DP received (see  Table \ref{tab:Number of AP received after leveling up at each level  (0-10).}) and the amount of DP required for breeding (see Table \ref{tab:The amount of AP required for breeding at each level (0-10).}) are the same at each level. Therefore, a dragon has a choice between two options, it can either breed or upgrade its skills. The system will favor the spending of DP on breeding while on the same level where those DP were received, as once a dragon moves to the next level this amount of DP will only be sufficient for a body part level up.\par
 
-Taking this into account the game already has several embedded mechanisms to ensure that dragon population will be within limits set by the game design (as described in Section \ref{Game Design Constraints}).\par
-
-Another game mechanism prevents the situation in which dragons become very valuable regardless of their level and skills and every player decides to breed their dragon once it receives the first dragon level up. It works as follows: as dragon population will grow, the number of battles held will increase. Therefore, the amount of Gold distributed to battle winners will decrease making it more and more difficult to obtain the required amount for an egg incubation \ref{Early adopter advantage}).\par
-
-On the other hand, dragons with higher DS\textit{ }will be able to receive Gold by being in the top of the leaderboards and by winning gladiator battles, thus creating incentive for other players to shift their playing style to produce higher valued dragons.\par
-
-Additionally, once the 10000th dragon will be hatched, another game mechanism will come into play: half of GOLD paid for each new incubation will be permanently destroyed by the Nest.\par
-
-Given that the cost of incubation is constant and equals 1000 GOLD, 500 GOLD will be burned each time new egg is sent to the Nest, thus increasing relative price of every next incubation. This will limit theoretical supply of dragons at the level of 109999 dragons (with the remainder of 500 GOLD in the Treasury). Nonetheless we think that this theoretical cap will not likely be reached.\par
-
 \subsection{Early adopter advantage}
 %\addcontentsline{toc}{subsection}{Early adopter advantage}
 \label{Early adopter advantage} \par
@@ -1895,7 +1883,27 @@ However, R, is subject to the following rules:\par
 Additionally, due to the early adopter advantage, it will be easier for those players that start participating in the game from its launch to earn Gold by entering the leaderboard.
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
+ 
+ \setlength{\parskip}{9.96pt}
+ \subsection{Dragon population growth}
+ %\addcontentsline{toc}{subsection}{Dragon population growth}
+ \label{Dragon population growth}   \par
 
+Now that we explained how dragon skills are calculated and how dragons level up, we can talk about dragon population growth.\par
+
+There is no hard cap on the number of dragons in the population. However, our simulation shows that if the dragon population will reach 100k of dragons, and even if just small part of players will play the game, it is highly unlikely that Ethereum Foundation network will be able to process those transactions even taking into account potential block gas limit growth according to the Moore's Law in the following years.\par
+
+Therefore, there are several embedded mechanisms to ensure that dragon population will be within limits set by the game design (as described in Section \ref{Game Design Constraints}).\par
+
+In addition to difficulty growth while going up levels (Section \ref{Leveling up dragons}) another game mechanism prevents the situation in which dragons become very valuable regardless of their level and skills and every player decides to breed their dragon once it receives the first dragon level up. It works as follows: as dragon population will grow, the number of battles held will increase. Therefore, the amount of Gold distributed to battle winners will decrease making it more and more difficult to obtain the required amount for an egg incubation (please see Section \ref{Early adopter advantage}).\par
+
+On the other hand, dragons with higher DS\textit{ }will be able to receive Gold by being in the top of the leaderboards and by winning gladiator battles, thus creating incentive for other players to shift their playing style to produce higher valued dragons.\par
+
+Additionally, once the 10000th dragon will be hatched, another game mechanism will come into play: half of GOLD paid for each new incubation will be permanently destroyed by the Nest.\par
+
+Given that the cost of incubation is constant and equals 1000 GOLD, 500 GOLD will be burned each time new egg is sent to the Nest, thus increasing relative price of every next incubation. This will limit theoretical supply of dragons at the level of 109999 dragons (with the remainder of 500 GOLD in the Treasury). Nonetheless we think that this theoretical cap will not likely be reached.\par
+
+ %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 \newpage
 \par
 
