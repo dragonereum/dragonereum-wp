@@ -138,11 +138,11 @@ url=false,
 %\addcontentsline{toc}{section}{Abstract}
 Dragonereum is a cryptocollectible game whereby users can own a dragon, trade their dragons, interbreed them and battle other dragons, collecting rewards and achievements along the way. All of these are done on the blockchain in an open, trusted and decentralized manner.\par
 
-Our aim is to build the first truly decentralized digital scarcity game, where developers do not have any control over the game once it is deployed. The community will have the ability to verify all the transactions and actions, without the involvement of trusted third parties.\par
+Our aim is to build the first truly decentralized digital scarcity game, where developers do not have any control over the game once it is deployed. The community will have the ability to verify all the transactions and actions without the involvement of trusted third parties.\par
 
 This document discusses the technological and economic implementation of the system. It aims to describe such elements as: random number generation, decentralized breeding algorithm, battle implementation, game mechanics, and a broader economic model which emphasizes the strength of a collectible game built on blockchain.\par
 
-In this document, we propose the philosophical background, technical foundations and an economic model of Dragonereum, whereby dragon supply is limited by the proposed game mechanics.%}
+In this document, we propose the philosophical background, technical foundations and the economic model of Dragonereum, whereby dragon supply is limited by the proposed game mechanics.%}
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
@@ -169,16 +169,16 @@ In this document, we propose the philosophical background, technical foundations
 %\addcontentsline{toc}{section}{State of Decentralized Games}
 The appearance of decentralized games defined a new era for digital collectibles: players no longer have to rely on a trusted third party which issues assets in order to preserve the rarity of their belongings, but can fully rely on the autonomous, censorship resistant, trustless and transparent entity - the code of the smart contract.\par
 
-However, the current offerings lack many important features of the decentralized technology which limits the player’s experience to just storing assets securely on the blockchain:\par
+However, the current offerings lack many important features of the decentralized \mbox{technology}, which limits the player’s experience to just storing assets securely on the blockchain:\par
 
 \begin{itemize}
-	\item The scope of actions one can do with his or her items are limited. Most cryptocollectible games function without a game mechanics or a carefully crafted game ecosystem.\par
+	\item The scope of actions one can do with his or her items is limited. Most cryptocollectible games function without a game mechanics or carefully crafted game ecosystem.\par
 
 	\item Not properly set supply mechanisms. Unlimited supply reduces the attractiveness of a particular cryptocollectibe.\par
 
 	\item The development teams retain full control over the released product and can add new custom-built assets at any time (though within some articulated limits) or even shut down the entire project.\par
 
-	\item The presale monetization model is widely used thus shifting the developing team’s efforts from game development to marketing and PR.\par
+	\item The presale monetization model is widely used thus shifting the development team’s efforts from game development to marketing and PR.\par
 
 	\item Additionally, the current solutions still heavily rely upon a centralized infrastructure, which diminishes the advantages of blockchain usage and creates a weak spot and a single point of failure.
 \end{itemize}\par
@@ -191,7 +191,7 @@ An improved free-to-play model is utilized where developers do not collect any f
 
 Our long-term goal is to create a fully decentralized game, leveraging all of the unique advantages of the blockchain. More on this in \ref{Serverless application}.\par
 
-In the following we describe how we aim to achieve those goals. In Section \ref{Introduction to Dragonereum} we give an overview of Dragonereum’s game ecosystem. In Section \ref{Game Design Constraints} we\ describe the technological limitations faced by Dragonereum and how they are overcome, we outline how we obtain randomness and present the genetics and diversity of our dragon population.  Section \ref{Game Mechanics} explains in detail the game mechanics, and how the in-game currency is obtained and distributed. The implementation of the game is described in Section \ref{Implementation Details}, and the possible platforms with which Dragonereum can be integrated, in Section \ref{Possible Integrations}. Lastly in Section \ref{Genesis} and Section \ref{GOLD} the details of the release of the genesis eggs and the Gold allocation are presented correspondingly.\par
+In the following, we describe how we aim to achieve those goals. In Section \ref{Introduction to Dragonereum} we give an overview of Dragonereum’s game ecosystem. In Section \ref{Game Design Constraints} we\ describe the technological limitations faced by Dragonereum and how they are overcome, we outline how we obtain randomness and present the genetics and diversity of our dragon population.  Section \ref{Game Mechanics} explains in detail the game mechanics, and how the in-game currency is obtained and distributed. The implementation of the game is described in Section \ref{Implementation Details}, and the possible platforms with which Dragonereum can be integrated in Section \ref{Possible Integrations}. Lastly in Section \ref{Genesis} and Section \ref{GOLD} the details of the release of the genesis eggs and the Gold allocation are presented correspondingly.\par
 
 
 \newpage
@@ -244,7 +244,7 @@ There are five different dragon types (air, water, earth, fire, and cyber). Drag
 \begin{Center}
 \begin{figure}[!ht]
 	\begin{Center}		\includegraphics[width=6.27in,height=5.15in]{./media/image16.png}
-		\caption{Possible offsprings produced by dragons of different types interbreeding.}
+		\caption{Possible offsprings produced by dragons of different types.}
 		\label{fig:Possible_offsprings_produced_by_dragons_of_different_types_interbreeding}
 	\end{Center}\end{figure}
 \end{Center}
@@ -292,7 +292,7 @@ The results of a battle will be displayed in a rich visual animation, which can 
 
 A battle winner receives Experience Points (XP). When the required quantity of XP are earned, the dragon gets a level up and receives some DNA Points (DP), which can be used for breeding or converted into body part level ups and thereby improvements of skills. \par
 
-Additionally, if the attacking dragon wins, it is credited with Gold as a bonus. Gold is an in-game cryptocurrency which will be distributed to winners from the game’s balance, and the ticker symbol for it is denoted by GOLD. The game’s creators will not have any control over Gold stored in the Dragonereum’ Treasury (which is one of the game’s smart contracts) once the control over the upgradability and halting mechanism will be transferred to the 0x000..0001 address (more details can be found in Section \ref{Serverless application}).\par
+Additionally, if the attacking dragon wins, it is credited with Gold as a bonus. Gold is an in-game cryptocurrency which will be distributed to winners from the game’s balance, and the ticker symbol for it is denoted by GOLD. The game’s creators will not have any control over Gold stored in the Dragonereum’s Treasury (which is one of the game’s smart contracts) once the control over the upgradability and halting mechanism will be transferred to the 0x000..0001 address (more details can be found in Section \ref{Serverless application}).\par
 
 As Gold has limited availability, the reward for battle winners will decrease over time. The value of the reward will be aligned with the number of dragons in the population, Dragon Skillfulness Index (described in Section \ref{Dragon Skillfulness Index}) and the amount of Gold in the Treasury. Once the initial balance in the game's Treasury becomes depleted, the reward adjusts itself according to the sum of fees collected. These are collected for egg incubation and additional in-game features. Consequently, the first players will have an advantage with regards to Gold accumulation.\par
 
@@ -644,7 +644,7 @@ Dragonereum’s dragons have 10 body parts, each consisting of 4 sets of genes, 
 
 \textbf{0302841} 0400941 0204180 0207320 0105800 \textbf{0102291} 0407630 0401391 \textbf{0201591} 0306510 0300351 0202210 \textbf{0005190} 0305350 0007531 0204551 \textbf{0305021} 0004421 0005011 0409360 \textbf{0202431} 0107660 0006810 0103420 0202250 \textbf{0002831} 0103821 0304430 \textbf{0407111} 0107070 0004201 0102570 \textbf{0405551} 0303861 0104861 0306670 0200110 \textbf{0105031} 0104531 0106750\par
 
-The order of the body parts is: head, eyes, horns, body, wings, arms, legs, tail, spikes, and skin. The active gene describing the body part in each set of 4 is written in bold type. Each particular body part gives the dragons a boost for a set of\textit{ basic skills}.\ For example, the head is responsible for attack, stamina, and intelligence, while the eyes are responsible for defense, speed, and intelligence (see Section \ref{Body parts and basic skills}).\par
+The order of the body parts is: head, eyes, horns, body, wings, arms, legs, tail, spikes, and skin. The active gene describing the body part in each set of 4 is written in bold type. Each particular body part gives the dragons a boost for a set of\textit{ basic skills}.\ For example, the head is responsible for attack, stamina, and intelligence, while the eyes are responsible for defense, speed and intelligence (see Section \ref{Body parts and basic skills}).\par
 
 The genome sequence determines the appearance and skills of a dragon. Also individual genes from it take part in the breeding process. In this example the first body part is represented by the following code:\par
 
@@ -2321,13 +2321,13 @@ These synthetic tests confirm that the aim to create a game ecosystem which is s
 
 Modern centralized games heavily rely on the entities that have created those games and that have full control over every aspect of the game: what to consider as a $``$bad$"$  or $``$good$"$  behaviour, private data policies, controls over the servers and all the data stored there, and determining the overall direction of the game development  \cite{Gogo_2018_Jun_16},  \cite{Steam_2017},  \cite{WikipediA_2018}\footnote{Sort the table by organization type (3rd column) and see the gaming entries.}, \cite{Ben_Gilbert_2018_Jun_22},  \cite{Aaron_Mamiit__2017_Mar_30}.\par
 
-At the same time a number of technologies unrelated to the gaming industry has been emerging which let users enjoy a transparent, censorship resistant, trustless, programmable and permissionless environment where anyone has full control over their private data (this technology stack is often referred to as Web 3.0  \cite{Josh_Stark_2018_Jun_6},  \cite{Stephan_Tual_2017_May_26}.\par
+At the same time a number of technologies unrelated to the gaming industry has been emerging which let users enjoy a transparent, censorship resistant, trustless, programmable and permissionless environment where anyone has full control over their private data (this technology stack is often referred to as Web 3.0  \cite{Josh_Stark_2018_Jun_6},  \cite{Stephan_Tual_2017_May_26}.)\par
 
-We think that It would be great to create a full scale game built on top of those technologies, so the created game will be 100$\%$  autonomous and decentralized, and no party will have control over any element of the game or its delivery mechanisms once it is launched, while still remaining engaging and fun compared to its centralized siblings.\par
+We think that it would be great to create a full scale game built on top of those technologies, so the created game will be 100$\%$  autonomous and decentralized, and no party will have control over any element of the game or its delivery mechanisms once it is launched, while still remaining engaging and fun compared to its centralized siblings.\par
 
 However, with Dragonereum our aim is more realistic and it is to create a decentralized game which will have minimal ties to our servers at launch and gradually move to decentralized solutions (storage, naming services and indexing) once the game is released.\par
 
-At game's launch we will retain the possibility to update and pause smart contracts in a case of a critical bug or game balance issues. However, once the smart contracts will be battle-tested and all necessary security measures will be taken, the control over deployed the smart contracts will be voluntarily transferred to a new owner. This might be a DAO or just the 0x000..0001 address.\par
+At game's launch we will retain the possibility to update and pause smart contracts in case of a critical bug or game balance issues. However, once the smart contracts will be battle-tested and all necessary security measures will be taken, the control over deployed smart contracts will be voluntarily transferred to a new owner. This might be a DAO or just the 0x000..0001 address.\par
 
 \begin{samepage}
 The upgrade mechanism works as follows:\par
@@ -2590,13 +2590,13 @@ There will be 60,000,000 GOLD minted during product deployment and no new coins 
 
 As Dragonereum will not have any kind of initial coin offerings or a sale, the majority (75$\%$ ) of tokens will be allocated to the Treasury (shown in blue in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}).\par
 
-Cybernomics of the game are based on the willingness of players to evolve better dragons in order to earn more GOLD.\par
+Cybernomics of the game are based on the willingness of players to evolve better dragons: as dragons with higher DS are likely to earn more GOLD.\par
 
-The more dragons are battling, the more expensive it becomes to earn GOLD from the Treasury. The Treasury is guaranteed to be replenished with players GOLD payments for incubation through embedded genetics: dragons with higher DS are likely to earn more GOLD. This basic feedback loop stimulates GOLD internal liquidity.\par
+The more dragons are battling, the more expensive it becomes to earn GOLD from the Treasury (please see \ref{Early adopter advantage}). The Treasury is guaranteed to be replenished with players GOLD payments for incubation through embedded genetics mechanism. This basic feedback loop stimulates GOLD internal liquidity.\par
 
 Cybernomics also determines the population specifications as well: dragons are very cheap to generate at the Genesis, thus stimulating aggressive population growth in order to become dominant species in the Ethereum universe.\par
 
-During early stages of the game there is an incentive for a faster population growth, as available  supply of GOLD inflates faster than deflation of GOLD occurs (originating from the environmental costs of incubation.)\par
+During early stages of the game there is an incentive for a faster population growth, as available  supply of GOLD inflates faster than its deflation occurs (originating from the environmental costs of incubation.)\par
 
 So similar to real world, evergrowing population is strictly limited by available resources. Once environmental resources become more scarce deflation starts dominating over inflation thus securing the store of value for players who have managed to earn more GOLD.\par
 
