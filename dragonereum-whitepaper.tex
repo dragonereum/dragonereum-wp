@@ -412,7 +412,7 @@ This approach is slower than the other solutions (2 blocks will take about 30 se
 
 This approach of RNG is described in Gluk256 repository  \cite{Dao_Casino_Ksenya_Serova_2017_Jun_27},  \cite{Gluk256_2016_Aug_26}. The Ethereum smart contract receives a newly generated public key from the owner and awaits a value from the user. After receipt of this value, the owner hashes it with a private key, thus generating a required random number, which might be confirmed by an already published public key.\par
 
-Regardless of the fact that a penalty for parties which does not reveal their signatures should be implemented, it is still possible to use this method for our use-cases. However, we consider this approach to be too complex for our initial requirements (more on this below).\par
+Regardless of the fact that a penalty for parties which do not reveal their signatures should be implemented, it is still possible to use this method for our use-cases. However, we consider this approach to be too complex for our initial requirements (more on this below).\par
 
 \vspace{\baselineskip}
 \subsection{Dragonereum’s solution}
@@ -429,7 +429,7 @@ Our solution uses a block’s hash to generate random numbers. As every transact
 
 where \textit{ now} is the block.timestamp.\par
 
-For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers are obtained.\par
+For complex computations where several different random numbers are required we use the remainder of the division of the initially generated random number and repeat the procedure until the necessary amount of random numbers is obtained.\par
 
 \vspace{\baselineskip}
 \subsection{Miner attack resistance analysis}
@@ -775,7 +775,7 @@ Our aim is to create a cryptocollectible game, whereby those users who spend mor
 In order to do this the game ecosystem should be balanced and should meet the following criteria:\par
 
 \begin{itemize}
-	\item The growth of the dragon population should be limited by the game mechanics;\par
+	\item The growth of the dragon population should be limited by the game mechanics.\par
 
 	\item Early game adopters should have an advantage in accumulating Gold over those players who joined the game at a later date, given that all other comparing factors are on an equal footing.\par
 
