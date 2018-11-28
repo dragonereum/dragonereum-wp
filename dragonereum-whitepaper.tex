@@ -1018,7 +1018,7 @@ Each dragon family has genes of different quality. The differences between these
 
 The appearance was already displayed in Figure  \ref{fig:The_different_dragon_types_with_all_of_their_possible_variations_including_inbreeding_row_1_regular_rows_28_and_mystery_rows_9_and_10} of Section \ref{Dragon diversity}, and here we discuss the skills of the different varieties.\par
 
- Table \ref{tab: The dragon variety factors for each basic skills depending on the dragon gene variation.} below provides the dragon variety factors for the five basic skills depending on the different dragon varieties \par
+ Table \ref{tab: The dragon variety factors for each basic skills depending on the dragon gene variation.} below provides the dragon variety factors for the five basic skills depending on the different dragon varieties.\par
 
 
 
@@ -1153,7 +1153,7 @@ The chance for a regular mutation to occur (excluding the case when two relative
 
 Details of inbreeding penalties and chances are described in our Medium  \mbox{articles (\url{https://medium.com/@dragonereum})}. \par
 
-If a player chooses to inbreed close relatives there is a high probability for a negative mutation will occur. This probability depends on different cases and is:\par
+If a player chooses to inbreed close relatives there is a high probability for a negative mutation to occur. This probability depends on different cases and is:\par
 
 \begin{itemize}
   \begin{samepage}
@@ -1178,7 +1178,7 @@ The overall skills of a dragon will be calculated as the sum of skills for all i
 \end{center}
 where  $Sk(j)$  is one of the five \textit{basic skills}, $bp$  is the body part influence on the particular skill as shown in  Table \ref{tab:The table shows which body parts are responsible for which particular skills.}, a checkmark corresponds to $bp=1$ and a cross corresponds to $bp=0$,   $f_{dt}$  is the dragon type factor shown in  Table \ref{tab:The dragon type factor for each basic skill.},  $f_{dv}$  is the dragon variety factor in  Table \ref{tab: The dragon variety factors for each basic skills depending on the dragon gene variation.} and $L$ is the body part level\footnote{The body part level is the level of the active gene for each body part.}. The index  $j$ denotes the basic skill,  $j \in$ {\textit{attack, defense, stamina, speed, intelligence} , and the summation index $i$  in the superscript, denotes the body part,  $i \in$ {head, eyes, horns, body, wings, arms, legs, tail, spike, pattern}. The following notation for the basic skill will also be used through the text: Sk(attack)$\equiv$A, Sk(defense)$\equiv$D, Sk(stamina)$\equiv$S, Sk(speed)$\equiv$V, Sk(intelligence)$\equiv$I.\par 
 
-This can be illustrated by the following example in  Table \ref{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Ashed Legs at level 3 of a particular dragon.}.  The numbers in the last column will be added to the other body parts and the result will show the dragon’s aptitude for in the different basic skills.
+This can be illustrated by the following example in  Table \ref{tab:An example, illustrating the calculation of the basic skill for a specific body part - the Ashed Legs at level 3 of a particular dragon.}.  The numbers in the last column will be added to other body parts and the result will show the dragon’s aptitude in different basic skills.
 
 %%%%%%%%%%%%%%%%%%%% Table No: 4 starts here %%%%%%%%%%%%%%%%%%%%
 \begin{table}[H]
@@ -1383,7 +1383,7 @@ Where\   $L_g$ \ is the gene level,   $f_{gv}$  is the gene variety factor,\ and
 
 \textit{Special attack} or \textit{special defense} is the ability to use the special powers available to each dragon family. It improves the \textit{attack} or \textit{defense} during a battle move. Those special skills use Mana. In  Table \ref{tab:Table of Mana costs, multipliers for a attack/defense and a probability of activation for Special Attack and Special Defense.} the amount of Mana necessary for the activation of the \textit{special attack }or the \textit{special defense }skill depending on the type of dragon is shown as well as the probability for its activation.\par
 
-For dragons with a mixed genome as a result of the breeding process the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the specialAttacks/specialDefenses mappings (see Section \ref{Blockchain breeding algorithm}).\par
+For dragons with a mixed genome as a result of the breeding process, the type used for special skills is determined during the incubation process by a factored random and stored in the type field in the specialAttacks/specialDefenses mappings (see Section \ref{Blockchain breeding algorithm}).\par
 
 
 %%%%%%%%%%%%%%%%%%%% Table No: 6 starts here %%%%%%%%%%%%%%%%%%%%
@@ -1565,7 +1565,7 @@ Before we describe the growing difficulty in acquiring DP we have to look at how
 \end{center}
 where A is the \textit{attack}, D is the \textit{defense}, S is the \textit{stamina}, V is the \textit{speed}, and I the \textit{intelligence} of the dragon. The \textit{basic skills} are calculated in Equation \ref{Eq:Sk}\footnote{In the equation $Sk(attack)\equiv A$, $Sk(defense)\equiv D$, $Sk(stamina)\equiv S$, $Sk(speed)\equiv V$, $Sk(intelligence)\equiv I$}.  \par
 
-The constants in Equation \ref{Eq:DS} were carefully obtained through a rigorous simulation procedure ensuring that dragons with similar DS have an equal chance at winning the battle. Numerous battles between randomly chosen dragons with a similar amount of total basic skills were simulated and if there were battles where a dragon had an advantage, the values were adjusted in order to avoid this situation. The process was repeated until there were no dragons that had a winning advantage and every dragon, regardless of their skills or traits, has a 50$\%$  chance of winning against a dragon with a similar DS.\par
+The constants in Equation \ref{Eq:DS} were carefully obtained through a rigorous simulation procedure ensuring that dragons with similar DS have an equal chance of winning the battle. Numerous battles between randomly chosen dragons with a similar amount of total basic skills were simulated and if there were battles where a dragon had an advantage, the values were adjusted in order to avoid this situation. The process was repeated until there were no dragons that had a winning advantage and every dragon, regardless of their skills or traits, has a 50$\%$  chance of winning against a dragon with a similar DS.\par
 
 Based on the DS, the game’s algorithms offer suitable opponents for regular battles. A short description and the corresponding code for the regular battles are given in the Appendix.\par
 
@@ -1878,7 +1878,7 @@ However, R, is subject to the following rules:\par
   \end{samepage}
 \end{itemize}\par
 
-Additionally, due to the early adopter advantage, it will be easier for those players that start participating in the game from its launch to earn Gold by entering the leaderboard.
+Additionally, due to the early adopter advantage, it will be easier for those players who start participating in the game from its launch to earn Gold by entering the leaderboard.
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
  
@@ -2158,7 +2158,7 @@ Therefore, economically motivated players will start leveling up dragons in orde
 
 In this scenario players randomly breed and level up dragons. In our opinion this is the most likely scenario.\par
 
-The game balance drops to around 10M GOLD at 1,000,000 battles, however further decline is very slow and the ballance decreases to 4.6M GOLD at 3,000,000 battles and to 3.1M GOLD at 5,000,000 battles. The \textit{battle winner reward} settles between 1.99 GOLD and 10.21 GOLD per battle depending on the DS of the winning dragon at 3,000,000 battles.\par
+The game balance drops to around 10M GOLD at 1,000,000 battles, however further decline is very slow and the balance decreases to 4.6M GOLD at 3,000,000 battles and to 3.1M GOLD at 5,000,000 battles. The \textit{battle winner reward} settles between 1.99 GOLD and 10.21 GOLD per battle depending on the DS of the winning dragon at 3,000,000 battles.\par
 
 In Figure \ref{fig:CS2The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in Gold (black line).}, just as in Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the initial sharp growth of the dragon population is due to the distribution of genesis eggs (red line). The black line shows the amount of Gold in the Treasury, which is declining due to the distribution of Gold to the battle winners and partial annihilation of Gold by the Nest.\par
 
@@ -2297,7 +2297,7 @@ Therefore, the game slows down and new dragons can only be hatched with the Gold
 
 Additionally, as the price of dragons will become higher more players will switch to breeding dragons therefore bringing the game to the state portrayed in Case 2.\par
 
-These synthetic tests confirm that the aim to create a game ecosystem which is stable in the long term was achieved. The explored scenarios might not include all the possible options for the players’ behaviour, nonetheless, they offer an insight on how the game ecosystem might develop after the launch. It is shown that due to the system of feedback loops implemented in the game, that all three cases are going to end up in the equilibrium state of Case Study 2.\par
+These synthetic tests confirm that the aim to create a game ecosystem which is stable in the long term has been achieved. The explored scenarios might not include all the possible options for the players’ behaviour, nonetheless, they offer an insight on how the game ecosystem might develop after the launch. It is shown that due to the system of feedback loops implemented in the game, that all three cases are going to end up in the equilibrium state of Case Study 2.\par
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
