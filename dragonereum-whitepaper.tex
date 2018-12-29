@@ -189,7 +189,7 @@ The supply of cryptocollectibles is limited by the proposed game design, and, fo
 
 An improved free-to-play model is utilized where developers do not collect any fees from players for game assets and the application is built to serve with minimal ties to any servers.\par
 
-Our long-term goal is to create a fully decentralized game, leveraging all of the unique advantages of the blockchain. More on this in \ref{Serverless application}.\par
+Our long-term goal is to create a fully decentralized game, leveraging all of the unique advantages of the blockchain. More on this in Section \ref{Serverless application}.\par
 
 In the following, we describe how we aim to achieve those goals. In Section \ref{Introduction to Dragonereum} we give an overview of Dragonereum’s game ecosystem. In Section \ref{Game Design Constraints} we\ describe the technological limitations faced by Dragonereum and how they are overcome, we outline how we obtain randomness and present the genetics and diversity of our dragon population.  Section \ref{Game Mechanics} explains in detail the game mechanics, and how the in-game currency is obtained and distributed. The implementation of the game is described in Section \ref{Implementation Details}, and the possible platforms with which Dragonereum can be integrated in Section \ref{Possible Integrations}. Lastly in Section \ref{Genesis} and Section \ref{GOLD} the details of the release of the genesis eggs and the Gold allocation are presented correspondingly.\par
 
@@ -224,7 +224,7 @@ Therefore, a player will have to choose a type of dragon to control (Figure \ref
 %%%%%%%%%%%%%%%%%%%% Figure/Image No: 1 Ends here %%%%%%%%%%%%%%%%%%%%
 
 
-The player’s goal might be presented by two paths: a dragon training master or a dragon breeding master. The dragon training master will be an expert in leveling up dragons so he/she can get the strongest dragon and earn in-game rewards as a result of winning battles. The dragon breeding master will know how to interbreed dragons in order to get highly unique and valuable dragons which might be sold on the game’s marketplace. Additionally there might be some other unforeseen game paths beneficial to players which will be discovered by them.\par
+The player’s goal might be presented by two paths: a dragon training master or a dragon breeding master. The dragon training master will be an expert in leveling up dragons so he/she can get the strongest dragon and earn in-game rewards as a result of winning battles. The dragon breeding master will know how to interbreed dragons in order to get highly unique and valuable dragons which might be sold on the game’s marketplace. Additionally, there might be some other unforeseen game paths beneficial to players which will be discovered by them.\par
 
 The game starts with the purchase of a dragon egg or a dragon from another player or during the initial distribution of genesis eggs. In the case of an egg, a user knows the egg’s parents, but not what kind of dragon will appear from the egg, as this is decided during the egg incubation in accordance with the rules set by Dragonereum’s genetics.\par
 
@@ -234,7 +234,7 @@ Offsprings will rarely outperform their parents right from the hatchery. However
 
 As in the real world, occasionally there might be a mutation which will cause some of the traits of a new dragon to be much weaker or much stronger than those of its parents. Mutations affect individual genes, so any trait can receive a boost or a skill reset during breeding, but no one will be able to predict which gene will be affected and when.\par
 
-As going up levels will require even more experience, it will become increasingly difficult to get any dragon’s descendants, thus limiting the total population of dragons and avoiding exponential growth.As such, the system is designed to encourage users to be active, and allow them to choose the winning strategy of their own choice.\par
+As going up levels will require even more experience, it will become increasingly difficult to get any dragon’s descendants, thus limiting the total population of dragons and avoiding exponential growth.  As such, the system is designed to encourage users to be active, and allow them to choose the winning strategy of their own choice.\par
 
 There are five different dragon types (air, water, earth, fire, and cyber). Dragons of different types can interbreed, creating unique offsprings, as can be seen in Figure \ref{fig:Possible_offsprings_produced_by_dragons_of_different_types_interbreeding}.\par
 
@@ -271,7 +271,7 @@ The attacking dragon always has an advantage as it can adjust its battle tactics
 Every move during a battle is determined by a weighted random number with the value of the weight determined by the positioning of the sliders (for example if the Action Slider is in the position of 20$\%$  defense and 80$\%$  attack - the dragon will make on average 20$\%$  defense moves and 80$\%$  attack moves). The dragons with faster speeds always make the first move.\par
 
 \begin{samepage}
- Based on the battle tactics, settings and results of the RNG, dragons are able to:\par
+ Based on the battle tactics, settings and results of the random number generator (RNG), dragons are able to:\par
  \begin{itemize}
     \item Change position
           \item Attack
@@ -336,7 +336,7 @@ These initial limitations set a foundation for a broader game economy: supply of
 
 \textit{Thirdly}, as Ethereum blocks are mined every 15 seconds we have to limit the interactivity of the game mechanics to suit this model.\par
 
-Additionally, we want to mention that the proposed random number generator (RNG) is in reality a pseudorandom number generator (PRNG) and true randomness is currently unachievable on the blockchain. Therefore, for high value transactions we offer a solution which minimizes the chances of exploiting the game’s algorithms.\par
+Additionally, we want to mention that the proposed RNG is in reality a pseudorandom number generator (PRNG) and true randomness is currently unachievable on the blockchain. Therefore, for high value transactions we offer a solution which minimizes the chances of exploiting the game’s algorithms.\par
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
@@ -419,7 +419,7 @@ Regardless of the fact that a penalty for parties which do not reveal their sign
 
 According to the initial requirements, the RNG has to generate a random number as fast as possible (ideally it should take less than 1 second, however, the processing time is currently limited by Ethereum’s rate of block creation). The best solution in this case is to use data from a blockchain block.\par
 
-Our solution uses a block’s hash to generate random numbers. As every transaction rely on different input data (dragon genetics, battle skills and tactics, etc), different dragons will receive different results even if several transactions are included in one block and therefore have same random number,\par
+Our solution uses a block’s hash to generate random numbers. As every transaction relies on different input data (dragon genetics, battle skills and tactics, etc), different dragons will receive different results even if several transactions are included in one block and therefore have the same random number,\par
 
 \begin{Center}
 \textit{uint256(keccak256(abi.encodePacked(blockhash(block.number - 1), now)));}
@@ -463,7 +463,7 @@ Battle transactions can not be compromised by regular players as the RNG include
 \end{justify}\par
 
 \begin{justify}
-However, this approach is easily exploitable by a sophisticated attacker who can employ a smart contract to check the value of block.timestamp during the block creation. We overcome this issue by allowing this function to be called only by an externally owned accounts  \cite{account_types_gas_and_transactions} (onlyHuman modifier).
+However, this approach is easily exploitable by a sophisticated attacker who can employ a smart contract to check the value of block.timestamp during the block creation. We overcome this issue by allowing this function to be called only by an externally owned account  \cite{account_types_gas_and_transactions} (onlyHuman modifier).
 \end{justify}\par
 
 \begin{justify}
@@ -753,7 +753,7 @@ This approach allows us to create a truly trusted world of cryptocollectible dra
 
 Five different dragon types will be released during Dragonereum’s launch. Each type will inherit Regular genes according to the gene variety Table shown in Figure  \ref{fig:The_different_dragon_types_with_all_of_their_possible_variations_including_inbreeding_row_1_regular_rows_28_and_mystery_rows_9_and_10}.  There will be 10000 genesis eggs released during the Genesis. Inbreeding genes and genes of highest quality (Mystery Genes) will play no part in the genesis dragon creation process.\par
 
-Since every dragon has ten different body parts, each dragon type has 282 475 249 (7\textsuperscript{10}) different dragon varieties. This is not including Inbreeding and Mystery Genes. Therefore, the chance of receiving two similar dragons during Genesis is 0.000708026634928287$\%$  (1 in 141 237). Consequently, we do not do additional checks for the existence of a particular dragon appearance as chances are very small but this check will require additional gas usage by the smart contract.\par
+Since every dragon has ten different body parts, each dragon type has 282 475 249 (7\textsuperscript{10}) different dragon varieties. This is not including Inbreeding and Mystery Genes. Therefore, the chance of receiving two similar dragons during Genesis is 0.000708026634928287$\%$  (1 in 141 237). Consequently, we do not do additional checks for the existence of a particular dragon appearance as chances are very small while this check will require additional gas usage by the smart contract.\par
 
 Five types of dragons will result in 2 758 547 353 515 625 different breeds when combined. Again, that is without inbreeding and Mystery genes. If all those dragons are to be evenly distributed among the population of the Earth, each person would receive around 360 000 varieties of dragons.\par
 
@@ -1257,7 +1257,7 @@ The maximum available health and mana points are calculated in Equation \ref{Eq:
     M = 5 \times I,
   \end{equation}
 \end{center}
-The current levels of health and mana points available to a dragon might be lower than the maximum calculated in Equation \ref{Eq:Health} and \ref{Eq:Mana}, as a result of a battle, in which the Mana could have been used to activate the \textit{special attack }or \textit{special defense }skills, while the HP could be lost as a result of damage done by an opponent. Mana and HP restore automatically over time.\par
+The current levels of Health and Mana points available to a dragon might be lower than the maximum calculated in Equation \ref{Eq:Health} and \ref{Eq:Mana}, as a result of a battle, in which the Mana could have been used to activate the \textit{special attack }or \textit{special defense }skills, while the HP could be lost as a result of damage done by an opponent. Mana and HP restore automatically over time.\par
 
 \subsection{Dragon Skillfulness Index}
 %\addcontentsline{toc}{subsection}{Dragon Skillfulness Index}
@@ -1469,7 +1469,7 @@ For dragons with a mixed genome as a result of the breeding process, the type us
 %\addcontentsline{toc}{subsection}{Special peaceful skills}
 \label{Special peaceful skills}  \par
 
-The maximum Level Up for a dragon is 10. On the 10th Level Up, the player can obtain a \textit{special peaceful skills} for their dragon.\par
+The maximum Level Up for a dragon is 10. On the 10th Level Up, the player can obtain a \textit{special peaceful skills} for their dragon\footnote{As of December 25, 2018 there has been an update to the recovery time of the \it{special peaceful skills}, which is now set to 14 days.  This was done to fix a flaw, which allowed for these powerful skills to have a low price on the marketplace due to their fast recovery and as a result their high supply.  More details can be found in the following Medium article: \href{https://medium.com/@dragonereum/game-balance-fix-special-peaceful-skills-edition-ee48e6fd7525}{\textcolor[HTML]{1155CC}{\uline{https://medium.com/@dragonereum/game-balance-fix-special-peaceful-skills-edition-ee48e6fd7525}}} .}.\par
 
 A \textit{special peaceful skill} allows users to earn in-game currency in exchange for offering skills to the game community on the game’s marketplace\footnote{The price of the {\it special peaceful skills}, alongside the prices of other items, such as dragons and eggs, traded on the marketplace will be decided by the market forces. The role of Dragonereum will only be to provide the internal marketplace to facilitate trade, however players will be able to interact directly with smart contracts and third-party marketplaces can be introduced.}.\par
 
@@ -1889,9 +1889,9 @@ Additionally, due to the early adopter advantage, it will be easier for those pl
 
 Now that we explained how dragon skills are calculated and how dragons level up, we can talk about dragon population growth.\par
 
-Our simulation shows that if the dragon population will reach 100k of dragons, and even if just small part of players will play the game, it is highly unlikely that Ethereum Foundation network will be able to process those transactions even taking into account potential block gas limit growth according to the Moore's Law in the following years.\par
+Our simulation shows that if the dragon population will reach 100k of dragons, and even if just a small part of players will play the game, it is highly unlikely that the Ethereum Foundation network will be able to process those transactions even taking into account potential block gas limit growth according to the Moore's Law in the following years.\par
 
-Therefore, there are several embedded mechanisms to ensure that dragon population will be within limits set by the game design (as described in Section \ref{Game Design Constraints}).\par
+Therefore, there are several embedded mechanisms to ensure that the dragon population will be within the limits set by the game design (as described in Section \ref{Game Design Constraints}).\par
 
 In addition to difficulty growth while going up levels (Section \ref{Leveling up dragons}) another game mechanism prevents the situation in which dragons become very valuable regardless of their level and skills and every player decides to breed their dragon once it receives the first dragon level up. It works as follows: as dragon population will grow, the number of battles held will increase. Therefore, the amount of Gold distributed to battle winners will decrease making it more and more difficult to obtain the required amount for an egg incubation (please see Section \ref{Early adopter advantage}).\par
 
@@ -1899,7 +1899,7 @@ On the other hand, dragons with higher DS\textit{ }will be able to receive Gold 
 
 Additionally, once the 10,000th dragon is hatched, another game mechanism will come into play: half of Gold paid for each new incubation will be permanently destroyed by the Nest.\par
 
-Given that the cost of incubation is 1000 GOLD, 500 GOLD will be burned each time a new egg is sent to the Nest. This will increase the price of the next incubation and will limit the theoretical supply of dragons at the level of 129,999 dragons (with the remainder of 500 GOLD in the Treasury). Nonetheless we think that this theoretical cap will not likely be reached.\par
+Given that the cost of incubation is 1000 GOLD, 500 GOLD will be burned each time a new egg is sent to the Nest. This will increase the price of the next incubation and will limit the theoretical supply of dragons at the level of 129,999 dragons (with the remainder of 500 GOLD in the Treasury). Nonetheless, we think that this theoretical cap will not likely be reached.\par
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 \newpage
@@ -2025,7 +2025,7 @@ We study in detail three different cases. It should be noted that not all possib
 %%%%%%%%%%%%%%%%%%%% Table No: 12 ends here %%%%%%%%%%%%%%%%%%%%
 
 
-In this scenario players breed dragons with a 90$\%$  probability and level them up with a 10$\%$  probability. The game balance decreases to around 16.5M GOLD at 3,000,000 battles and continue to decline slowly as a result of the high volume of egg incubations (part of Gold is burned during hatching), see  Table \ref{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. } (column 3), and Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} (black line). In Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the dragon population growth is shown as a function of the number of battles held. The number of battles in these case studies is a more appropriate variable than using a synthetic time, as it is problematic to predict the actual number of active players. The initial sharp growth of the dragon population is due to the distribution of genesis eggs.\par
+In this scenario players breed dragons with a 90$\%$  probability and level them up with a 10$\%$  probability. The game balance decreases to around 16.5M GOLD at 3,000,000 battles and continues to decline slowly as a result of the high volume of egg incubations (part of Gold is burned during hatching), see  Table \ref{tab:Table showing the number of battles held (column 1), the corresponding dragon population (column 2), the Gold in the Treasury (column 3), the median battle winner reward (column 4), the median cost of Gold in $ (column 5), and the cost of an egg incubation (column 6).  This information is provided for the three different cases studied below. } (column 3), and Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} (black line). In Figure \ref{fig:The number of dragons (red line) as a function of the number of battles held, and the Treasury balance in GOLD (black line)} the dragon population growth is shown as a function of the number of battles held. The number of battles in these case studies is a more appropriate variable than using a synthetic time, as it is problematic to predict the actual number of active players. The initial sharp growth of the dragon population is due to the distribution of genesis eggs.\par
 
 
 
@@ -2337,11 +2337,11 @@ In the long run and with the advancement of technology, we hope to remove any us
 
 The game is currently accessible via browser with a MetaMask plugin installed (\href{https://metamask.io/}{\textcolor[HTML]{1155CC}{\uline{https://metamask.io/}}}), in Opera beta mobile browser, Status (\href{https://status.im/}{\textcolor[HTML]{1155CC}{\uline{https://status.im/}}}) and Cyb (\href{https://cyb.ai/}{\textcolor[HTML]{1155CC}{\uline{https://cyb.ai/}}}).\par
 
-No sign up or any kind of registration is\ required as in order to offer engaging gameplay no one  needs to know the names or any other personal information of the players. The private keys which are stored in user's wallet are sufficient to serve as the players’ IDs.\par
+No sign up or any kind of registration is\ required as in order to offer engaging gameplay no one  needs to know the names or any other personal information of the players. The private keys which are stored in the user's wallet are sufficient to serve as the players’ IDs.\par
 
 The data layer consists of two ERC721  \cite{Ethereum_2017_Sep_26}  non-fungible tokens which will represent two states of a dragon (an egg and a dragon) and an ERC20  \cite{Ethereum_2015_Nov_19}  which will represent the in-game cryptocurrency. \par
 
-The business logic layer consists of several smart contracts: egg core features contract, dragon core features contract, breeding, battling and marketplace contract.\par
+The business logic layer consists of several smart contracts: an egg core features contract, a dragon core features contract, a breeding, battling and marketplace contract.\par
 
 The game itself can be used without reliance on a back-end server for any purposes other than allowing users to derive the app from the server to the player’s browser. The app uses client-side rendering, therefore, our server is actually just a storage which can be easily replaced.\par
 
@@ -2402,9 +2402,9 @@ Furthermore, by staying on-chain we have the advantage of remaining more secure,
 %\addcontentsline{toc}{subsection}{Graphics}
   \label{Graphics}  \par
 
-While designing the game we considered several options for visualisation style of our dragons. Current status quo in cryptocollectible industry is  use of flat, simplified images which are easily merged into an image of a game character.\par
+While designing the game we considered several options for the visualisation style of our dragons. The current status quo in  thecryptocollectible industry is the use of flat, simplified images which are easily merged into an image of a game character.\par
 
-However, we decided to switch to 3/4 view as it gives more realistic perspective to players and it makes the potential transition to VR or AR a bit easier.
+However, we decided to switch to 3/4 view as it gives a more realistic perspective to players and it makes the potential transition to VR or AR a bit easier.
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
 
@@ -2459,7 +2459,7 @@ Easy access to the Ethereum blockchain will make the world a more open and trans
 \vspace{\baselineskip}
  \subsection{Location based protocols}\label{Location based protocols} \par
 
-Use of location based protocols will bring new dimensions into the Dragonereum’s gameplay. Though core game design will much likely stay unchanged, it will be possible create new location based game mechanics in order to utilize the power of proof-of-location protocols such as control by a dragon or a thunder of dragons over countries or territories.\\
+Use of location based protocols will bring new dimensions into the Dragonereum’s gameplay. Though core game design will much likely stay unchanged, it will be possibleto create new location based game mechanics in order to utilize the power of proof-of-location protocols such as control by a dragon or a thunder of dragons over countries or territories.\\
 
 
  %%%%%%%%%%%%  Starting New Page here %%%%%%%%%%%%%%
@@ -2588,13 +2588,13 @@ The more dragons are battling, the more expensive it becomes to earn Gold from t
 
 Cybernomics also determines the population specifications: dragons are very cheap to generate at the Genesis, thus stimulating aggressive population growth in order to become dominant species in the Ethereum universe.\par
 
-During early stages of the game there is an incentive for a faster population growth, as available  supply of Gold inflates faster than its deflation occurs (originating from the environmental costs of incubation).\par
+During early stages of the game there is an incentive for a faster population growth, as the available  supply of Gold inflates faster than its deflation occurs (originating from the environmental costs of incubation).\par
 
-Similar to the real world, evergrowing population is strictly limited by available resources. Once environmental resources become scarcer deflation starts dominating over inflation thus securing the store of value for players who have managed to earn more Gold.\par
+Similar to the real world, an evergrowing population is strictly limited by available resources. Once environmental resources become scarcer deflation starts dominating over inflation thus securing the store of value for players who have managed to earn more Gold.\par
 
 \textbf{Founders}\par
 
-Once the smart contract is deployed, appointed team members will receive a total of 10$\%$ of tokens in their possession (shown in red in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}) in accordance with individual contribution to the project in a form of funding, development, design, drawings, etc conducted before Genesis.\par
+Once the smart contract is deployed, appointed team members will receive a total of 10$\%$ of tokens in their possession (shown in red in Figure \ref{fig:Chart_showing_the_allocation_of_GOLD}) in accordance with the individual contribution to the project in a form of funding, development, design, drawings, etc. conducted before Genesis.\par
 
 \textbf{Nonsense Games}\par
 
@@ -2616,7 +2616,7 @@ The remaining 10$\%$  will be used for the Dragonereum ecosystem development and
 	\item Bounty campaigns (eg. Gitcoin).
 \end{itemize}\par
 
-Overall purpose of the Foundation is to stimulate liquidity of Gold by increasing its consumption by basic protocol contracts and auxiliary contracts which return Gold to the Treasury. Examples of such contracts can be name registries, trading protocols, bridges to other networks, etc.\par
+The overall purpose of the Foundation is to stimulate the liquidity of Gold by increasing its consumption by basic protocol contracts and auxiliary contracts which return Gold to the Treasury. Examples of such contracts can be name registries, trading protocols, bridges to other networks, etc.\par
 
 The multisig address of the Foundation is 0x5ff8957ef7e964e8072815211c9fc3e7f820f1d4.\par
 
